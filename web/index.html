@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shorline: Zcash quantum exposure survey</title>
+<meta name="description" content="How much ZEC would survive Q-Day? Shorline replays every transparent input and output on the Zcash chain and classifies all value by quantum exposure, following ZIP 2005 and ZIP 2007. Verified against Zebra's value pools to the zatoshi.">
+<meta property="og:title" content="Shorline: how much ZEC would survive Q-Day?">
+<meta property="og:description" content="A verifiable, chain-wide quantum-exposure survey of Zcash: exposed, hash-protected, stranded and recoverable ZEC.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jmohak2004.github.io/shorline/">
+<meta property="og:image" content="https://jmohak2004.github.io/shorline/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jmohak2004.github.io/shorline/og.png">
+<link rel="canonical" href="https://jmohak2004.github.io/shorline/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script>
+  try { const t = localStorage.getItem("shorline-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--ink)"/><path d="M5 19c3.2 0 3.2-3 6.4-3s3.2 3 6.4 3 3.2-3 6.4-3 3.2 3 3.8 3" fill="none" stroke="var(--page)" stroke-width="2.4" stroke-linecap="round"/><path d="M5 24c3.2 0 3.2-2 6.4-2s3.2 2 6.4 2 3.2-2 6.4-2 3.2 2 3.8 2" fill="none" stroke="var(--page)" stroke-opacity=".45" stroke-width="2" stroke-linecap="round"/><circle cx="22.5" cy="9.5" r="3" fill="var(--hash)"/></svg>
+      Shorline
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#fate">Survey</a>
+      <a href="#history">History</a>
+      <a href="#zip2007">ZIP 2007</a>
+      <a href="#check">Check an address</a>
+      <a href="#method">Method</a>
+      <a href="https://github.com/Jmohak2004/shorline">GitHub</a>
+    </nav>
+    <button class="theme-btn" id="theme" type="button" aria-label="Toggle light and dark theme">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Zcash quantum exposure survey</div>
+      <h1>How much ZEC would survive Q-Day?</h1>
+      <p class="lede">A large enough quantum computer breaks the discrete-log assumptions under every pool Zcash uses today. Shorline replays the chain from genesis and sorts <em>every zatoshi</em> by what such an adversary could do to it, following the threat model in <a href="https://zips.z.cash/zip-2005">ZIP 2005</a> and the scope of <a href="https://zips.z.cash/zip-2007">ZIP 2007</a>.</p>
+      <div class="hero-figure">
+        <div class="hero-number" id="hero-number"><span class="loading">…</span></div>
+        <div class="hero-caption" id="hero-caption">Loading the survey…</div>
+      </div>
+      <div class="tiles" id="tiles"></div>
+      <div class="asof" id="asof"></div>
+    </div>
+  </section>
+
+  <section id="fate">
+    <div class="wrap">
+      <div class="card">
+        <div class="section-head"><h2>Every ZEC, by quantum fate</h2><span class="tag" id="fate-total"></span></div>
+        <p class="sub">Transparent value comes from Shorline's own reconstruction of the UTXO set. Shielded and lockbox balances are Zebra's chain value pools at the same height.</p>
+        <div class="segbar" id="segbar" role="group" aria-label="Total ZEC supply split by quantum exposure"></div>
+        <div class="legend" id="fate-legend"></div>
+        <div class="fate-list" id="fate-list"></div>
+        <details class="table-view"><summary>Show as table</summary><div class="tbl-wrap" id="fate-table"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="verify">
+    <div class="wrap">
+      <div class="card verify">
+        <div>
+          <div class="section-head"><h2>Verified to the zatoshi</h2></div>
+          <p class="sub">Shorline doesn't trust an explorer's address balances. It streams every block from public <code>lightwalletd</code> servers, replays every transparent input and output in order, and rebuilds the UTXO set itself. That total is then compared with the transparent value pool a Zebra node reports for the same block. If a single spend were mis-attributed, the totals would not match.</p>
+          <div id="verify-badge" style="margin-top:14px"></div>
+        </div>
+        <div>
+          <table class="ledger" id="verify-ledger"></table>
+          <div class="stats" id="scan-stats" style="margin-top:14px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="history">
+    <div class="wrap">
+      <div class="card">
+        <figure>
+          <div class="section-head"><h2>Transparent ZEC by exposure, 2016 to today</h2></div>
+          <p class="sub">Each time a t-address is spent from, its public key goes on-chain for good, and everything still at that address moves from <em>hash-protected</em> to <em>exposed</em>. Address reuse turned most transparent ZEC into exposed ZEC long before anyone worried about quantum computers.</p>
+          <div class="legend" id="history-legend" style="margin-top:12px"></div>
+          <div class="chart" id="history-chart" style="height:340px"></div>
+          <details class="table-view"><summary>Show as table</summary><div class="tbl-wrap" id="history-table"></div></details>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="age">
+    <div class="wrap grid-2">
+      <div class="card">
+        <figure>
+          <h3>When the exposed keys were revealed</h3>
+          <p class="sub small">Exposed ZEC still at its address today, by the year its key first appeared on-chain.</p>
+          <div class="chart" id="years-chart" style="height:260px"></div>
+          <details class="table-view"><summary>Show as table</summary><div class="tbl-wrap" id="years-table"></div></details>
+        </figure>
+      </div>
+      <div class="card">
+        <figure>
+          <h3>Coins nobody is moving</h3>
+          <p class="sub small">Transparent ZEC by time since the address last moved. Long-dormant exposed coins may belong to lost keys and can never be migrated.</p>
+          <div class="legend" id="dormancy-legend" style="margin-top:10px"></div>
+          <div class="chart" id="dormancy-chart" style="height:240px"></div>
+          <details class="table-view"><summary>Show as table</summary><div class="tbl-wrap" id="dormancy-table"></div></details>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="reuse">
+    <div class="wrap">
+      <div class="card">
+        <div class="section-head"><h2>Exposure is still growing</h2></div>
+        <div class="grid-3" style="margin-top:12px" id="reuse-tiles"></div>
+        <p class="sub small" style="margin-top:14px">Funds sent to an address whose key is already public are exposed the moment they arrive. Most of this is exchange and pool hot-wallet reuse. Wallets that follow <a href="https://zips.z.cash/zip-0315">ZIP 315</a> never reuse transparent addresses.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="zip2007">
+    <div class="wrap">
+      <div class="card">
+        <div class="section-head"><h2>Answering the ZIP 2007 survey question</h2><span class="tag">zcash/zips#1302</span></div>
+        <p class="sub">The ZIP 2007 discussion (<a href="https://github.com/zcash/zips/issues/1302">#1302</a>) lists as a next step: <em>"Survey the chain to see what proportion of funds are currently recoverable and in each category."</em> It also asks whether P2SH-wrapped P2PKH or P2PK redeem scripts are used at all. Shorline fetched the first spend of every funded P2SH address whose script has been revealed and classified the redeem script.</p>
+        <h3 style="margin-top:18px">Transparent value by ZIP 2007 category</h3>
+        <div class="tbl-wrap" id="zip2007-table"></div>
+        <h3 style="margin-top:22px">Revealed P2SH redeem scripts (funded addresses)</h3>
+        <div class="tbl-wrap" id="p2sh-table" style="max-width:640px"></div>
+        <p class="small muted" id="p2sh-note"></p>
+        <div id="salted" hidden style="margin-top:22px"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ycash" hidden>
+    <div class="wrap">
+      <div class="card">
+        <div class="section-head"><h2>Hidden on Zcash, exposed on Ycash</h2><span class="tag">cross-chain</span></div>
+        <p class="sub">In July 2019 Ycash forked from Zcash at block 570,000 and copied every balance, keys included. When someone spent their Ycash airdrop, the spend published the same public key that guards their ZEC. Shorline asked a Ycash server about the largest addresses that look hash-protected on Zcash and were funded before the fork. It then checked each Ycash spend's scriptSig for a key whose Hash160 matches. A match proves the key is public.</p>
+        <div class="grid-3" style="margin-top:12px" id="ycash-tiles"></div>
+        <div class="tbl-wrap" id="ycash-table" style="margin-top:14px"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="top">
+    <div class="wrap">
+      <div class="card">
+        <div class="section-head"><h2>Largest exposed balances</h2></div>
+        <p class="sub">The transparent addresses a quantum adversary would target first. These are public blockchain balances, mostly exchange and custodian wallets. Each could move to Ironwood today.</p>
+        <div class="tbl-wrap" id="top-table"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="check">
+    <div class="wrap">
+      <div class="card checker">
+        <div class="section-head"><h2>Check an address</h2></div>
+        <p class="sub">Paste a transparent address (<code>t1…</code>, <code>t3…</code> or <code>tex1…</code>). The lookup runs in your browser. It downloads one shard file covering every funded address that shares the address's first two characters after the prefix, so this site never learns which address you checked.</p>
+        <form id="check-form" autocomplete="off">
+          <label class="sr-only" for="check-input">Zcash address</label>
+          <input id="check-input" placeholder="t1… or t3… or tex1…" spellcheck="false">
+          <button class="btn" type="submit">Check</button>
+        </form>
+        <div class="result" id="check-result" aria-live="polite"></div>
+        <p class="privacy-note">For a live answer straight from the chain, run <code>shorline check &lt;address&gt;</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="act">
+    <div class="wrap">
+      <div class="section-head"><h2>What to do about it</h2></div>
+      <div class="grid-3" style="margin-top:14px">
+        <div class="card"><h3>Holding transparent ZEC</h3><p class="small ink2">Move it to a fresh <b>Ironwood</b> shielded address in a ZIP 2005-compliant wallet. Ironwood notes are designed to be recoverable through a future post-quantum Recovery Protocol. Sweep each address completely so no change is left behind a revealed key.</p></div>
+        <div class="card"><h3>Holding Sapling, Orchard or Sprout</h3><p class="small ink2">Migrate to Ironwood. ZIP 2005 is explicit: funds left in these pools would be <b>inaccessible</b> once their protocols are disabled. Use a wallet that follows <a href="https://zips.z.cash/zip-0318">ZIP 318</a>, which splits the move into standard denominations so the public amount crossing the turnstile doesn't fingerprint you.</p></div>
+        <div class="card"><h3>Running a multisig or treasury</h3><p class="small ink2">Transparent P2SH multisigs reveal every key on first spend. Their recovery is the hardest case in ZIP 2007. Re-create the treasury as a <b>FROST</b> threshold key (ZIP 312) in the Ironwood pool, which ZIP 2005 explicitly supports.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <div class="card">
+        <div class="section-head"><h2>Method</h2></div>
+        <div class="steps">
+          <div class="step"><b>Stream</b>Every block from genesis via <code>GetBlockRange</code> with <code>poolTypes = [TRANSPARENT]</code> from public lightwalletd servers (zec.rocks). Nothing is stored on disk.</div>
+          <div class="step"><b>Replay</b>A Rust engine applies every input and output in order, tracking each address's balance and the height its public key or redeem script was first revealed.</div>
+          <div class="step"><b>Classify</b>Each output falls into a ZIP 2007 category: P2PKH hidden or exposed, P2SH unseen or seen, P2PK, or bare multisig. A P2PK or multisig output also exposes the matching t1 address, in both key encodings.</div>
+          <div class="step"><b>Verify</b>The reconstructed transparent total is checked against Zebra's <code>valuePools</code> at the same height. Shielded pools come from the same snapshot.</div>
+        </div>
+        <blockquote>An adversary can … break Spend authentication for the transparent pool by forging ECDSA-over-secp256k1 signatures used in scripts, provided that the public key has been revealed (i.e. if the address has been spent from previously …).<cite>ZIP 2005, Threat model</cite></blockquote>
+        <blockquote>Recovery would not be possible for funds still in the Sprout, Sapling, or Orchard pools; all such funds would be inaccessible after their respective protocols are disabled.<cite>ZIP 2005, Abstract</cite></blockquote>
+        <h3 style="margin-top:18px">Limits, stated plainly</h3>
+        <ul class="tight">
+          <li><b>Exposed is a lower bound.</b> Keys can also leak off-chain: shared xpubs, signed messages, or spends of the same coins on the 2019 Ycash fork. None of that is visible here.</li>
+          <li><b>Hash-protected is an upper bound,</b> for the same reason. It is also only <em>recoverable in principle</em>: it needs the ZIP 2007 circuit to be built and deployed.</li>
+          <li><b>Unseen P2SH cannot be classified</b> from public data, as #1302 notes. Their scripts appear only when spent.</li>
+          <li><b>Shielded privacy is a separate risk.</b> A quantum adversary who knows a shielded address could decrypt notes sent to it. That depends on which addresses have been published, not on the chain, so it isn't measured here.</li>
+          <li>This is not a prediction of when, or whether, a cryptographically relevant quantum computer will exist.</li>
+        </ul>
+        <h3 style="margin-top:18px">Reproduce it</h3>
+<pre>git clone https://github.com/Jmohak2004/shorline &amp;&amp; cd shorline
+cargo run --release -- scan --out data        # ~1 hour, streams ~8 GB, uses ~4 GB RAM
+cargo run --release -- check t1YourAddress…   # live check of any address</pre>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Shorline · MIT licensed · built for the ZcashIND <em>Build on Zcash</em> bounty</div>
+    <div id="foot-data"></div>
+  </div>
+</footer>
+
+<div class="tooltip" id="tooltip" role="status" aria-hidden="true"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

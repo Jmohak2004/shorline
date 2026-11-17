@@ -1,0 +1,36 @@
+[package]
+name = "shorline"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "A quantum-exposure survey of the Zcash chain: classifies every transparent and shielded zatoshi by what a discrete-log-breaking adversary could do to it (ZIP 2005 / ZIP 2007)."
+repository = "https://github.com/Jmohak2004/shorline"
+readme = "README.md"
+keywords = ["zcash", "quantum", "post-quantum", "blockchain", "analytics"]
+categories = ["command-line-utilities", "cryptography::cryptocurrencies"]
+
+[dependencies]
+anyhow = "1"
+bs58 = { version = "0.5", features = ["check"] }
+clap = { version = "4", features = ["derive"] }
+futures = "0.3"
+hex = "0.4"
+k256 = { version = "0.13", default-features = false, features = ["arithmetic"] }
+prost = "0.13"
+ripemd = "0.1"
+rustc-hash = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = { version = "0.10", features = ["compress"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+tonic = { version = "0.12", features = ["tls", "tls-webpki-roots"] }
+ureq = { version = "2", features = ["json"] }
+
+[build-dependencies]
+protox = "0.7"
+tonic-build = "0.12"
+
+[profile.release]
+opt-level = 3
+debug = false
+codegen-units = 4

@@ -1,0 +1,48 @@
+Ycash cross-check: 146632 candidate addresses funded before 570000 (389129 ZEC); checking 10000 (355511 ZEC)
+  ! t3Y9TAC4tKCfozoQzFLvFtZtkMmgYRiNSBd: status: Unknown, message: "-5: Invalid address", details: [], metadata: MetadataMap { headers: {"content-type": "application/grpc"} }
+  250/10000 checked | revealed on Ycash: 4 addresses, 3095 ZEC | failed 1
+  ! t3gsVKoQsMMg2L7W4XcSWLtikSpFQK8CsXT: status: Unknown, message: "-5: Invalid address", details: [], metadata: MetadataMap { headers: {"content-type": "application/grpc"} }
+  500/10000 checked | revealed on Ycash: 7 addresses, 3428 ZEC | failed 2
+  750/10000 checked | revealed on Ycash: 11 addresses, 3722 ZEC | failed 2
+  ! t3WkYYqiXpUGujzcyzdmSZYAKRcKvFDv9h6: status: Unknown, message: "-5: Invalid address", details: [], metadata: MetadataMap { headers: {"content-type": "application/grpc"} }
+  1000/10000 checked | revealed on Ycash: 11 addresses, 3722 ZEC | failed 3
+  1250/10000 checked | revealed on Ycash: 11 addresses, 3722 ZEC | failed 3
+  1500/10000 checked | revealed on Ycash: 13 addresses, 3786 ZEC | failed 3
+  1750/10000 checked | revealed on Ycash: 15 addresses, 3845 ZEC | failed 3
+  2000/10000 checked | revealed on Ycash: 15 addresses, 3845 ZEC | failed 3
+  2250/10000 checked | revealed on Ycash: 15 addresses, 3845 ZEC | failed 3
+  2500/10000 checked | revealed on Ycash: 17 addresses, 3884 ZEC | failed 3
+  ! t3PP1nGQxsBMvPkmhhQk5yBVZRKRQ5gnVyB: status: Unknown, message: "-5: Invalid address", details: [], metadata: MetadataMap { headers: {"content-type": "application/grpc"} }
+  2750/10000 checked | revealed on Ycash: 20 addresses, 3937 ZEC | failed 4
+  3000/10000 checked | revealed on Ycash: 22 addresses, 3969 ZEC | failed 4
+  ! t3ZM7LMQWkZeyeKvW2ScmwtDx2ftKjjUpA6: status: Unknown, message: "-5: Invalid address", details: [], metadata: MetadataMap { headers: {"content-type": "application/grpc"} }
+  3250/10000 checked | revealed on Ycash: 22 addresses, 3969 ZEC | failed 5
+  3500/10000 checked | revealed on Ycash: 23 addresses, 3982 ZEC | failed 5
+  3750/10000 checked | revealed on Ycash: 25 addresses, 4006 ZEC | failed 5
+  4000/10000 checked | revealed on Ycash: 27 addresses, 4027 ZEC | failed 5
+  4250/10000 checked | revealed on Ycash: 28 addresses, 4037 ZEC | failed 5
+  4500/10000 checked | revealed on Ycash: 30 addresses, 4057 ZEC | failed 5
+  4750/10000 checked | revealed on Ycash: 31 addresses, 4067 ZEC | failed 5
+  5000/10000 checked | revealed on Ycash: 33 addresses, 4085 ZEC | failed 5
+  5250/10000 checked | revealed on Ycash: 34 addresses, 4093 ZEC | failed 7
+  5500/10000 checked | revealed on Ycash: 35 addresses, 4100 ZEC | failed 7
+  5750/10000 checked | revealed on Ycash: 35 addresses, 4100 ZEC | failed 8
+  6000/10000 checked | revealed on Ycash: 36 addresses, 4107 ZEC | failed 8
+  6250/10000 checked | revealed on Ycash: 39 addresses, 4126 ZEC | failed 9
+  6500/10000 checked | revealed on Ycash: 39 addresses, 4126 ZEC | failed 9
+  6750/10000 checked | revealed on Ycash: 40 addresses, 4132 ZEC | failed 9
+  7000/10000 checked | revealed on Ycash: 42 addresses, 4142 ZEC | failed 9
+  7250/10000 checked | revealed on Ycash: 43 addresses, 4147 ZEC | failed 10
+  7500/10000 checked | revealed on Ycash: 43 addresses, 4147 ZEC | failed 10
+  7750/10000 checked | revealed on Ycash: 43 addresses, 4147 ZEC | failed 10
+  8000/10000 checked | revealed on Ycash: 44 addresses, 4152 ZEC | failed 11
+  8250/10000 checked | revealed on Ycash: 46 addresses, 4161 ZEC | failed 11
+  8500/10000 checked | revealed on Ycash: 47 addresses, 4166 ZEC | failed 12
+  8750/10000 checked | revealed on Ycash: 47 addresses, 4166 ZEC | failed 12
+  9000/10000 checked | revealed on Ycash: 47 addresses, 4166 ZEC | failed 12
+  9250/10000 checked | revealed on Ycash: 48 addresses, 4170 ZEC | failed 12
+  9500/10000 checked | revealed on Ycash: 50 addresses, 4177 ZEC | failed 12
+  9750/10000 checked | revealed on Ycash: 50 addresses, 4177 ZEC | failed 12
+  10000/10000 checked | revealed on Ycash: 51 addresses, 4181 ZEC | failed 12
+wrote /private/tmp/claude-501/-Users-mohakjaiswal-solsolana-/621f7110-eca5-431a-bdb1-ac31ee56c194/scratchpad/full/ycash_exposure.json: 51 addresses / 4181.24020651 ZEC that look hash-protected on Zcash had their keys revealed on Ycash
+exit=0

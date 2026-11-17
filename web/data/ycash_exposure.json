@@ -1,0 +1,423 @@
+{
+  "fork_height": 570000,
+  "server": "https://lite.ycash.xyz:9067",
+  "ycash_tip": 3104956,
+  "zcash_snapshot_height": 3583892,
+  "candidates": 146632,
+  "candidates_zat": 38912924892502,
+  "checked": 10000,
+  "checked_zat": 35551188326094,
+  "failed": 12,
+  "revealed_count": 51,
+  "revealed_zat": 418124020651,
+  "revealed": [
+    {
+      "address": "t1RVbKvMp9c2GMvnaxEFHuEJdnRcST8htWB",
+      "ycash_address": "s1UpjYHSKudJ6bWi7RpHQ5B7M9nWc2uz2Fz",
+      "zat": 142384337739,
+      "category": "p2pkh_hidden",
+      "ycash_height": 728820,
+      "ycash_txid": "b044abdc9d8e2b393a2add9b1bdd8c1f73abb6fc2416cf83ce225eb53e5c30a7"
+    },
+    {
+      "address": "t1SYwpPuZDMwVTSVonkL9rnY3mHMZ92GHMN",
+      "ycash_address": "s1Vt62kz4yPDKh2RLGLNG2jLm8eFinsXz8o",
+      "zat": 115536083840,
+      "category": "p2pkh_hidden",
+      "ycash_height": 573529,
+      "ycash_txid": "e8299fd1b70a4e9d790d126dcb874616d90e5b7108600c90c28092d7666bd515"
+    },
+    {
+      "address": "t1L8hJSadwVrMasBAekfERCou9QNM6Lbag8",
+      "ycash_address": "s1PTqWof9hX8BpT6h8LhLb9ccWmGWimYjrG",
+      "zat": 32578681060,
+      "category": "p2pkh_hidden",
+      "ycash_height": 1072038,
+      "ycash_txid": "0355ff577a71b16536b9bb7a4729920f8aad24a386acd6bcec7c0d4844d78dc5"
+    },
+    {
+      "address": "t1MM6KXAySikoRWjrMcHEspxbTgmhNQp2L6",
+      "ycash_address": "s1QgEXtFVCk2df6fNqCKM3mmJq3frxJoKS9",
+      "zat": 19057275271,
+      "category": "p2pkh_hidden",
+      "ycash_height": 591563,
+      "ycash_txid": "73100336172763b14ea38d3279e2ddb79ccd788dc24f16068ffd16d3fa7002eb"
+    },
+    {
+      "address": "t1SXak9iJyJFFteCArULHUjJ3wDnpNhwXHm",
+      "ycash_address": "s1VrixWnpjKX68E7hL4NPeg6mJagz4CVi3t",
+      "zat": 12982300000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 645124,
+      "ycash_txid": "6940bec78993d3dfa33b194579b1ed1e3a1be9cea87b20802b1171879af5f363"
+    },
+    {
+      "address": "t1Uj2zYRdSkauAAHsUw3KRzHwRbBNssUGxT",
+      "ycash_address": "s1Y4BCuW9CmrjPkDPxX5Rbw6enx5YXA5v8f",
+      "zat": 10622199999,
+      "category": "p2pkh_hidden",
+      "ycash_height": 645124,
+      "ycash_txid": "6940bec78993d3dfa33b194579b1ed1e3a1be9cea87b20802b1171879af5f363"
+    },
+    {
+      "address": "t1WkhQv6p1dHoD2e6PoTKFDSU5gzzNuLraH",
+      "ycash_address": "s1a5qdHBKmeZdScZcsPVRRAFBT3u9u2JQhr",
+      "zat": 9640808500,
+      "category": "p2pkh_hidden",
+      "ycash_height": 728817,
+      "ycash_txid": "5e4aed62198e36f1fcdacae67bfc49662e0988ada9b4d11406262f1800212764"
+    },
+    {
+      "address": "t1dwTET8GbqTP81u6TnrB6Pq4PiwmKqTpZi",
+      "ycash_address": "s1hGbSpCnMrjDMbpcwNtHGLdmm5qvwGn9dg",
+      "zat": 8117614400,
+      "category": "p2pkh_hidden",
+      "ycash_height": 728817,
+      "ycash_txid": "5e4aed62198e36f1fcdacae67bfc49662e0988ada9b4d11406262f1800212764"
+    },
+    {
+      "address": "t1Xs6KnY4y2NNm4hNaUHdDvVcpSXeJhM3y4",
+      "ycash_address": "s1bCEY9caj3eCzecu44KjPsJLBoRoxaSNSm",
+      "zat": 7446460904,
+      "category": "p2pkh_hidden",
+      "ycash_height": 666120,
+      "ycash_txid": "5edc7aef8f28c6b6f544c430e2d63d72d9a63f70cdafd227f7a7e7fa851c9c74"
+    },
+    {
+      "address": "t1NzyukW4uuXwiP1jXKtch25tdLG6Z23Jsx",
+      "ycash_address": "s1SL887aafvomwxwFzuvirxtbzhAGCJaKoP",
+      "zat": 7320299999,
+      "category": "p2pkh_hidden",
+      "ycash_height": 645124,
+      "ycash_txid": "6940bec78993d3dfa33b194579b1ed1e3a1be9cea87b20802b1171879af5f363"
+    },
+    {
+      "address": "t1SLK5dirmpc4bXnxC1LoCd7sBK4X1WJjc2",
+      "ycash_address": "s1VfTHzoNXqstq7iUfbNuNZvaYfxgbtz2kT",
+      "zat": 6571254864,
+      "category": "p2pkh_hidden",
+      "ycash_height": 728817,
+      "ycash_txid": "5e4aed62198e36f1fcdacae67bfc49662e0988ada9b4d11406262f1800212764"
+    },
+    {
+      "address": "t1VaK9LdY59XJra5wJVusjYYezr9sUVeRLU",
+      "ycash_address": "s1YuTMhi3qAo96A1Tn5wyuVMNND438DWz7s",
+      "zat": 3355593283,
+      "category": "p2pkh_hidden",
+      "ycash_height": 628171,
+      "ycash_txid": "85ba4a28979329c63686849c413218159a006d529b4f425c4a76da6486cf52a0"
+    },
+    {
+      "address": "t1gbpbbvmqz63yfXNcCEwDoDCdZUVVvLm6t",
+      "ycash_address": "s1jvxoy1Hc1MtDFSu5nH3Pk1uzvNf7m5GR3",
+      "zat": 3154402056,
+      "category": "p2pkh_hidden",
+      "ycash_height": 752648,
+      "ycash_txid": "29a22aa5d4fd6c732e8722791ca7020777d404eb2ccd7fae3aea09bea818412b"
+    },
+    {
+      "address": "t1Kb1mCN4UweCntkreZrnELAvQiq9S55Ro4",
+      "ycash_address": "s1Nv9yZSaExv32UgP89ttQGydn5jK5WwKd8",
+      "zat": 3077756681,
+      "category": "p2pkh_hidden",
+      "ycash_height": 953617,
+      "ycash_txid": "033c646f67fd7a466ef8d4302dab381176c096ab049f0c7a7bfd64267c691e4b"
+    },
+    {
+      "address": "t1T3TRcMJ8gT39WewXfg3hFs1yKNANZPq7H",
+      "ycash_address": "s1WNbdyRothisP6aU1Fi9sCfjLgGKzZvLuY",
+      "zat": 2657235700,
+      "category": "p2pkh_hidden",
+      "ycash_height": 799964,
+      "ycash_txid": "5ac8a40e5821e5e71c6cf954bd2326fe17963bcf31ab32089f32d6c0c685180e"
+    },
+    {
+      "address": "t1bMHSj38fqRhw59Td3mkenYzDmjBis5PvV",
+      "ycash_address": "s1egRf67eRrhYAf4z6dorpjMhb8dML7ukYZ",
+      "zat": 1997199999,
+      "category": "p2pkh_hidden",
+      "ycash_height": 645124,
+      "ycash_txid": "6940bec78993d3dfa33b194579b1ed1e3a1be9cea87b20802b1171879af5f363"
+    },
+    {
+      "address": "t1KMjRzoydHuJA2MRJi2AwTi68vac3mWW51",
+      "ycash_address": "s1NgseMtVPKB8PcGwnJ4H7QWoWHUmb3Qv6y",
+      "zat": 1960545200,
+      "category": "p2pkh_hidden",
+      "ycash_height": 1323107,
+      "ycash_txid": "56fa0853e9633c3d118bd592a25a61b58ccca1daed2e7686a7022b07f1b649eb"
+    },
+    {
+      "address": "t1K89fGg5Rb4MstQpMPGVfXyFWFqD7dzAdT",
+      "ycash_address": "s1NTHsdkbBcLC7ULLpyJbqUmxscjNptW2NM",
+      "zat": 1868414638,
+      "category": "p2pkh_hidden",
+      "ycash_height": 894285,
+      "ycash_txid": "9f60914a06e3f4454d20c332f7b1feee1dfb167250bd8a6bbd6858de7cc572ec"
+    },
+    {
+      "address": "t1RPSMgbijHjEjK8Kjq3KT5q7tNa6xRXfB3",
+      "ycash_address": "s1Uiaa3gEVK14xu3rDR5Rd2dqFjUGbq4jp2",
+      "zat": 1740970700,
+      "category": "p2pkh_hidden",
+      "ycash_height": 1433070,
+      "ycash_txid": "5d8f3979389909894fbaf404bbc99a80d1f5997afe15707f66e465c79666dfe9"
+    },
+    {
+      "address": "t1fjoedexGF9qNt4Ebv7TJLQhGgzs6i8mVb",
+      "ycash_address": "s1j4wrzjU2GRfcTym5W9ZUHDQe3u2gURfsc",
+      "zat": 1697133852,
+      "category": "p2pkh_hidden",
+      "ycash_height": 879357,
+      "ycash_txid": "5f716279dd041f16841aff00728c5ed1718550fd1baf6717f39ce3575b024219"
+    },
+    {
+      "address": "t1X5buNtVQ7YhSi2GL8YCxmNMVdh9W3pU3a",
+      "ycash_address": "s1aQk7jy1A8pXgHwnoiaK8iB4rzbK7d5VzF",
+      "zat": 1602219895,
+      "category": "p2pkh_hidden",
+      "ycash_height": 792041,
+      "ycash_txid": "9a7e3c3082fd6c8b916c28ab626f314543a3c35ca729febb46b71f38ce35b7a7"
+    },
+    {
+      "address": "t1V5pnA89uL4pn3uGeiZ2q7wFCJvHxddLKH",
+      "ycash_address": "s1YQxzXCffMLf1dpo8Jb914jxZfpTbkDb6F",
+      "zat": 1600000000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 600589,
+      "ycash_txid": "98d1a7364b54277c8ed6c33072a4043c10f29dc8fd581aa8628fcae9ebdca764"
+    },
+    {
+      "address": "t1fgrgcLgCVrp9odsiEMxa8gAEJTKcpyhuo",
+      "ycash_address": "s1j1ztyRBxX8ePPZQBpQ4k5UsbfMVCj22Lb",
+      "zat": 1309303544,
+      "category": "p2pkh_hidden",
+      "ycash_height": 609709,
+      "ycash_txid": "9aee1e8b031b50cc65bd03273acb621f261f22bb2c41fbd3f829f6c633c63085"
+    },
+    {
+      "address": "t1P14GfnjTpp1fbJDfPbaVKvr9HsXzxKAqF",
+      "ycash_address": "s1SLCV2sFDr5quBDk8ydgfGjZWemhg11oez",
+      "zat": 1199900000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 687566,
+      "ycash_txid": "46a68d11fda422d432a2e416e605584ce17a27b4f18b96da842f56891ce53e8d"
+    },
+    {
+      "address": "t1dLc6hUomJ4NVeee3PzVDLZfcZYDMYaxWj",
+      "ycash_address": "s1gfkK4ZKXKLCjEaAWz2bPHNNyvSNziggi8",
+      "zat": 1146150000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 844737,
+      "ycash_txid": "5213a621051ba1ea42c5416eca9e3efc4e761ba9b666f6d31542083119f2f557"
+    },
+    {
+      "address": "t1WeSre6dPZh6QP2NzWApFFvXfVuFvTvhEn",
+      "ycash_address": "s1Zyb51B99axvdxwuU6CvRCjF2roRVmCZUC",
+      "zat": 1090571859,
+      "category": "p2pkh_hidden",
+      "ycash_height": 572089,
+      "ycash_txid": "6bc414f7c9311ae7ae092bdfeccc57fbb708f4cdbd8f5e4bf6b9994b0e9a7988"
+    },
+    {
+      "address": "t1LmBYrYZtRDnfN6xy7rdWQQdNK4M6xcbea",
+      "ycash_address": "s1Q6KmDd5eSVctx2VShtjgMDLjfxWh5kyvJ",
+      "zat": 1083443360,
+      "category": "p2pkh_hidden",
+      "ycash_height": 574129,
+      "ycash_txid": "a9fa3d14f49305097f8cfae3220a73b3a6b422e13989b3ec9324ac34990ce54e"
+    },
+    {
+      "address": "t1gA7XmgDXTeRG9qLEcNaD8T6WHPzqAKaAj",
+      "ycash_address": "s1jVFk8kjHUvFVjkriCQgP5FoseJAUKRjJv",
+      "zat": 1000958000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 1075893,
+      "ycash_txid": "58478eb3945e8d59dfc090f87054215ca1f2a78625645c5e341ceee4fa451e57"
+    },
+    {
+      "address": "t1Q77N697Qv9oPXUQzcmP1ePqoRAHdsaTtD",
+      "ycash_address": "s1TSFaTDdAwRdd7PwUCoVBbCZAn4TGfxP4e",
+      "zat": 999900000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 609709,
+      "ycash_txid": "9aee1e8b031b50cc65bd03273acb621f261f22bb2c41fbd3f829f6c633c63085"
+    },
+    {
+      "address": "t1cQirQdgfiH9M6AguoPrgQa7nXebJngDKc",
+      "ycash_address": "s1fjs4miCRjYyag6DPPRxrMNq9tYkxi4dyP",
+      "zat": 994408808,
+      "category": "p2pkh_hidden",
+      "ycash_height": 572568,
+      "ycash_txid": "ead7f7e850340466a4a7903454f37f10e4eb052fdc63bca9bf3ed640173f40f1"
+    },
+    {
+      "address": "t1QJ5oUhsxs16YzxVctUJozxnEMbw2sgVZC",
+      "ycash_address": "s1TdE1qnPitGvnat26UWQywmVbiW6jWB5Kv",
+      "zat": 916686886,
+      "category": "p2pkh_hidden",
+      "ycash_height": 570668,
+      "ycash_txid": "5da8fb2b88738ff0f543c4934032bb95e0d2eceb8f3f118ac3af30e9f315e5a0"
+    },
+    {
+      "address": "t1QkFpuZ4FEARmYPBbaqQwxYwfS5Q4zvEyn",
+      "ycash_address": "s1U5Q3Gda1FSG18Ji5AsX7uMf2nyZjrQPJ7",
+      "zat": 899676200,
+      "category": "p2pkh_hidden",
+      "ycash_height": 796907,
+      "ycash_txid": "b8282aeb32fe1c7d48e8ebfeca550d1f91226e62e6366c726c87dff446183430"
+    },
+    {
+      "address": "t1Wbdq6ku1KMQqXtMrTM2xR91NpZWBA6EYK",
+      "ycash_address": "s1Zvn3TqQmLdF57otL3P98MwikBTfqywNKx",
+      "zat": 899080000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 897029,
+      "ycash_txid": "f674cabc227f4e5dc1c3659c1eb22a505ef1a726e9167a9385fb4e1c0468838a"
+    },
+    {
+      "address": "t1MdKfiAJPCr5ofmeztrmr7GeBYv4p3XcBu",
+      "ycash_address": "s1QxTt5Ep9E7v3FhBUUtt245MYupEXGGep8",
+      "zat": 799900000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 631349,
+      "ycash_txid": "17a132b6916793f5d37cdb6ae6b89d3b4525f134d0fd42bf7a88413284c4eb9a"
+    },
+    {
+      "address": "t1UvPF1aXp2xgMGfGM3Biqa1zxeVm5bv1rH",
+      "ycash_address": "s1YFXTNf3a4EWaranpdDq1WpiL1PvijCW3n",
+      "zat": 758217411,
+      "category": "p2pkh_hidden",
+      "ycash_height": 660805,
+      "ycash_txid": "c13ba2a1e062e560660b1686d2c1882504a29f64b19d0d8f49aa022ba33c364e"
+    },
+    {
+      "address": "t1dPYzycJf8ay3Uw2TnW7PwyZM6TfRZZJB7",
+      "ycash_address": "s1gihDLgpR9roH4rYwNYDZtnGiTMq4dpFGv",
+      "zat": 699000000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 622393,
+      "ycash_txid": "a2e1d449b4d8bd8da8bbd6bd96b1f7c91be3fc7a64ab9c18d843b3501fe41be6"
+    },
+    {
+      "address": "t1bB8ADH6LbJTaxGgjpZPVwHvVtHRFCQ4pj",
+      "ycash_address": "s1eWGNaMc6caHpYCDDQbVft6dsFBatWmXN1",
+      "zat": 633182959,
+      "category": "p2pkh_hidden",
+      "ycash_height": 591590,
+      "ycash_txid": "dc211c9ba417a07a9f89efa003332c36098bc5b72b5a2583f5794559be0984b6"
+    },
+    {
+      "address": "t1eqcET1bRepZSrbRP1YrVNB2NookZ3uhkg",
+      "ycash_address": "s1iAkSp67Bg6PgSWwrbaxfJyjkAhv6cSvkK",
+      "zat": 614942542,
+      "category": "p2pkh_hidden",
+      "ycash_height": 630987,
+      "ycash_txid": "50405ea64d1c52f5b0ef90efd389016e2ed890b06ef9d7b5a68c331b6b7614d9"
+    },
+    {
+      "address": "t1X6k8jUf9XZk9wfTA8yQfdcP6HToyHtQQN",
+      "ycash_address": "s1aRtM6ZAuYqaPXaydj1WqaR6TeMycs9YKX",
+      "zat": 613505649,
+      "category": "p2pkh_hidden",
+      "ycash_height": 952108,
+      "ycash_txid": "d0a1c51fcb4d4c1fde6d735c107d37f44b739a2b05848cade40663658e06af8b"
+    },
+    {
+      "address": "t1JQMha3cYP2SaguDvUmq65nuUEfCQz1nqR",
+      "ycash_address": "s1MjVuw88JQJGpGpkQ4owG2bcqbZN4C68YG",
+      "zat": 578600000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 590365,
+      "ycash_txid": "84e15f6ad5c0ae6ec700ec7f814a0bb777461faf20725ef11e82daeb5bd17ef8"
+    },
+    {
+      "address": "t1TXpeKZG5vKN61uXiA7SCMvh31qL5SAX28",
+      "ycash_address": "s1WrxrgdmqwbCKbq4Bk9YNJjQQNjVhhc714",
+      "zat": 549750000,
+      "category": "p2pkh_hidden",
+      "ycash_height": 688592,
+      "ycash_txid": "fce07a7406135552de2feadbeb3241e6167437fbdc5c895b786d95074092386e"
+    },
+    {
+      "address": "t1JkKc7burPDUWA1qTZSKC5dSwcYY7N3tYs",
+      "ycash_address": "s1N5TpUgRcQVJjjwMw9URN2SAJyShisCw2r",
+      "zat": 523334150,
+      "category": "p2pkh_hidden",
+      "ycash_height": 904755,
+      "ycash_txid": "a424cecba3cce722f6543917fb25a6b0090e8a8845bd3d1d3d4a4453e2605bbe"
+    },
+    {
+      "address": "t1K4bT5JTcRCoeV9xMxgTzVhiXH1hAqrAsG",
+      "ycash_address": "s1NPjfSNyNSUdt55UqYiaASWRtdurmdXixy",
+      "zat": 509748259,
+      "category": "p2pkh_hidden",
+      "ycash_height": 577281,
+      "ycash_txid": "bba6c001c9c8631f8e5154d7cf91ad0b5c4c98567fa59d030f2b37fac46811c6"
+    },
+    {
+      "address": "t1YiWgAAYjjtDYpTGpubc4XVR5etvdAZM8Y",
+      "ycash_address": "s1c3etXF4VmA3nQNoJVdiEUJ8T1o6Dss153",
+      "zat": 482452900,
+      "category": "p2pkh_hidden",
+      "ycash_height": 681823,
+      "ycash_txid": "a79199c8688164b716a61c32dbe718e091ac8de19ea12e8f3a792af3ebd7a1aa"
+    },
+    {
+      "address": "t1d4GUWBxeA2uqXTiHLYFsQ4d5tVBE2ybi4",
+      "ycash_address": "s1gPQgsGUQBJk57PEkvaN3LsLTFPLnxBa2Q",
+      "zat": 463978019,
+      "category": "p2pkh_hidden",
+      "ycash_height": 796882,
+      "ycash_txid": "18bf907d3d725321546b18322b0af49c2a7db2adacfc9a31ea19078669fc9b35"
+    },
+    {
+      "address": "t1c2GamAbfAZLLUruwUvdDw3RDL1SyQFD7J",
+      "ycash_address": "s1fMQo8F7RBqAa4nSR4xjPsr8agucapv65r",
+      "zat": 457540522,
+      "category": "p2pkh_hidden",
+      "ycash_height": 908030,
+      "ycash_txid": "0db529afadb65b8699a15c16555946c4f9cbdb71e02b921f37e97a1f8827d25c"
+    },
+    {
+      "address": "t1Q7xN9faw45Tn2ms3MKsZPafTcAP4115WY",
+      "ycash_address": "s1TT6aWk6h5MJ1chPWwMyjLPNpy4YdEZeGc",
+      "zat": 437038777,
+      "category": "p2pkh_hidden",
+      "ycash_height": 581327,
+      "ycash_txid": "bb1eeb4a738bf20b7db536d8a1c2317150256b0eb064891bf0f2752c5da7c9ba"
+    },
+    {
+      "address": "t1VmK7GVGcvkgm4j995PbCTmLnbHJ3tLMig",
+      "ycash_address": "s1Z6TKdZnNx2WzeefcfRhNQa49xBTh26fAu",
+      "zat": 395427160,
+      "category": "p2pkh_hidden",
+      "ycash_height": 949942,
+      "ycash_txid": "fda5d85df1cc7b0442c935c52409b70cd8ba01aa0ff6ed84a20f47dabed5ff43"
+    },
+    {
+      "address": "t1fmiV7N3MzCttwY2yLoCMMLz3hwoSebV1b",
+      "ycash_address": "s1j6rhUSZ81Uj8XTZSvqJXJ9hR4qy7cefF1",
+      "zat": 385482600,
+      "category": "p2pkh_hidden",
+      "ycash_height": 640107,
+      "ycash_txid": "d4dcf9ca3a94ec523b74e0d09f63aebca4b5ac8e267038b863b8e029393a75e1"
+    },
+    {
+      "address": "t1Nd2FgwAxJKVMfo9gdB44Fr9S6Qikoxq8m",
+      "ycash_address": "s1RxAU41giKbKbFigADDAECeroTJtNLNfNt",
+      "zat": 371052205,
+      "category": "p2pkh_hidden",
+      "ycash_height": 770954,
+      "ycash_txid": "95cfc9548305bcd7991db7b1eda80daa727c0c9a5d8431b3976dc5aa14a273ca"
+    },
+    {
+      "address": "t1LPZmczybd22MJHjyJbo3xvBHwY4tvAPqP",
+      "ycash_address": "s1Pihyz5VMeHratDGStduDuitfJSEWmUYtB",
+      "zat": 342000261,
+      "category": "p2pkh_hidden",
+      "ycash_height": 931363,
+      "ycash_txid": "adf01d1f4c6a9ca9f55db857690cbb30470cefa95f2061301fc084f98ab5086f"
+    }
+  ]
+}

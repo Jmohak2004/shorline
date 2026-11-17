@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths: ["src/**", "proto/**", "build.rs", "Cargo.toml", "Cargo.lock", ".github/workflows/ci.yml"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo test --release
+      - run: cargo build --release
+      # Live smoke test against public lightwalletd: replays the first 5,000
+      # blocks and requires every transparent input to resolve.
+      - name: Smoke-scan the first 5,000 blocks
+        run: |
+          ./target/release/shorline scan --end 5000 --no-pools --no-p2sh-survey --no-lookup --out /tmp/smoke
+          python3 -c "import json,sys; s=json.load(open('/tmp/smoke/summary.json')); m=s['scan']['missing_prevouts']; print('blocks',s['scan']['blocks'],'missing',m); sys.exit(1 if m else 0)"
