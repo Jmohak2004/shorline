@@ -1,0 +1,288 @@
+{
+  "chain": {
+    "hash": "0000000000aff857d760c4802ce3a9e3d066b5ad73ed82bd5290dcf0a8139478",
+    "height": 3583892,
+    "time": 1794948793
+  },
+  "cross_check": {
+    "difference_zat": 0,
+    "height": 3583892,
+    "match": true,
+    "node_build": "v7.0.0+git.e8db87e",
+    "shorline_transparent_zat": 1203744698852579,
+    "zebra_transparent_zat": 1203744698852579
+  },
+  "dormancy": [
+    {
+      "bucket": "0-1y",
+      "exposed_zat": 682843758204678,
+      "hidden_zat": 275829944731407
+    },
+    {
+      "bucket": "1-2y",
+      "exposed_zat": 17697201237076,
+      "hidden_zat": 54947919531055
+    },
+    {
+      "bucket": "2-4y",
+      "exposed_zat": 6532511262256,
+      "hidden_zat": 27246847931177
+    },
+    {
+      "bucket": "4-6y",
+      "exposed_zat": 6400035271130,
+      "hidden_zat": 33144540894106
+    },
+    {
+      "bucket": "6y+",
+      "exposed_zat": 10543132173409,
+      "hidden_zat": 45520808918129
+    }
+  ],
+  "exposed_by_reason": {
+    "pubkey_in_output": 90896119972,
+    "spend": 723925742028577
+  },
+  "exposed_by_reveal_year": [
+    {
+      "year": 2016,
+      "zat": 1118884465443
+    },
+    {
+      "year": 2017,
+      "zat": 20451730042427
+    },
+    {
+      "year": 2018,
+      "zat": 5491660667868
+    },
+    {
+      "year": 2019,
+      "zat": 4560175139551
+    },
+    {
+      "year": 2020,
+      "zat": 45743200832207
+    },
+    {
+      "year": 2021,
+      "zat": 5807413576727
+    },
+    {
+      "year": 2022,
+      "zat": 4854873071972
+    },
+    {
+      "year": 2023,
+      "zat": 34591445837769
+    },
+    {
+      "year": 2024,
+      "zat": 30139593200929
+    },
+    {
+      "year": 2025,
+      "zat": 181567596399086
+    },
+    {
+      "year": 2026,
+      "zat": 389690064914570
+    }
+  ],
+  "generated_at": 1794949070,
+  "p2sh_survey": {
+    "addresses_with_balance": 5571,
+    "by_redeem_type": [
+      {
+        "addresses": 1262,
+        "type": "data_envelope",
+        "zat": 342827430
+      },
+      {
+        "addresses": 2,
+        "type": "multisig_1_of_1",
+        "zat": 2232327
+      },
+      {
+        "addresses": 3,
+        "type": "multisig_1_of_2",
+        "zat": 2530100
+      },
+      {
+        "addresses": 408,
+        "type": "multisig_2_of_2",
+        "zat": 13931734928951
+      },
+      {
+        "addresses": 3825,
+        "type": "multisig_2_of_3",
+        "zat": 23272131054923
+      },
+      {
+        "addresses": 4,
+        "type": "multisig_2_of_4",
+        "zat": 12686146
+      },
+      {
+        "addresses": 1,
+        "type": "multisig_2_of_6",
+        "zat": 204426530
+      },
+      {
+        "addresses": 1,
+        "type": "multisig_2_of_8",
+        "zat": 8978000
+      },
+      {
+        "addresses": 1,
+        "type": "multisig_3_of_7",
+        "zat": 498832
+      },
+      {
+        "addresses": 1,
+        "type": "multisig_4_of_4",
+        "zat": 220700
+      },
+      {
+        "addresses": 1,
+        "type": "multisig_4_of_5",
+        "zat": 40000
+      },
+      {
+        "addresses": 1,
+        "type": "multisig_6_of_8",
+        "zat": 1484192115
+      },
+      {
+        "addresses": 1,
+        "type": "multisig_7_of_12",
+        "zat": 1224428712998
+      },
+      {
+        "addresses": 9,
+        "type": "other",
+        "zat": 528274604
+      },
+      {
+        "addresses": 4,
+        "type": "p2pk_wrapped",
+        "zat": 1818763
+      },
+      {
+        "addresses": 8,
+        "type": "p2pkh_wrapped",
+        "zat": 55316408
+      },
+      {
+        "addresses": 39,
+        "type": "salted_multisig_2_of_3",
+        "zat": 99604062023755
+      }
+    ],
+    "classified": 5571,
+    "failed": 0
+  },
+  "reuse": {
+    "exposed_addresses_with_balance_that_received_after_reveal": 239139,
+    "sent_to_exposed_last_30d": {
+      "since_height": 3522000,
+      "zat": 6328819569755239
+    },
+    "sent_to_exposed_total_zat": 253361659893410245
+  },
+  "risk": {
+    "exposed_zat": 724016638148549,
+    "hash_protected_zat": 436690062005874,
+    "lockbox_zat": 7696893709512,
+    "recoverable_zat": 418383305606669,
+    "stranded_zat": 74902662466408,
+    "total_zat": 1704727560635168,
+    "unknown_zat": 43037997681367,
+    "unspendable_zat": 1016789
+  },
+  "scan": {
+    "blocks": 3583893,
+    "entities": 9470343,
+    "inputs": 163954491,
+    "missing_prevouts": 0,
+    "outputs": 191264244,
+    "seconds": 1859.336469792,
+    "transactions": 17308993,
+    "utxos": 27200690
+  },
+  "schema": 1,
+  "shielded": {
+    "height": 3583892,
+    "zat": {
+      "ironwood": 418383305606669,
+      "lockbox": 7696893709512,
+      "orchard": 32000166510775,
+      "sapling": 41680074860687,
+      "sprout": 1222421094946,
+      "transparent": 1203744698852579
+    }
+  },
+  "sources": {
+    "lightwalletd": [
+      "https://zec.rocks:443",
+      "https://na.zec.rocks:443",
+      "https://eu.zec.rocks:443",
+      "https://ap.zec.rocks:443"
+    ],
+    "value_pools": "https://mainnet.zcashexplorer.app/api/v1/blockchain-info"
+  },
+  "tool": "shorline 0.1.0",
+  "transparent": {
+    "categories": [
+      {
+        "addresses": 551180,
+        "id": "p2pkh_hidden",
+        "utxos": 18164446,
+        "zat": 436690062005874
+      },
+      {
+        "addresses": 280420,
+        "id": "p2pkh_exposed",
+        "utxos": 8750689,
+        "zat": 585902789472613
+      },
+      {
+        "addresses": 23542,
+        "id": "p2sh_unseen",
+        "utxos": 72097,
+        "zat": 43037997681367
+      },
+      {
+        "addresses": 5571,
+        "id": "p2sh_seen",
+        "utxos": 213361,
+        "zat": 138035000762582
+      },
+      {
+        "addresses": 17,
+        "id": "p2pk",
+        "utxos": 96,
+        "zat": 78847893354
+      },
+      {
+        "addresses": 1,
+        "id": "bare_multisig",
+        "utxos": 1,
+        "zat": 20000
+      },
+      {
+        "addresses": 1,
+        "id": "nulldata",
+        "utxos": 13,
+        "zat": 1016789
+      },
+      {
+        "addresses": 0,
+        "id": "nonstandard",
+        "utxos": 0,
+        "zat": 0
+      }
+    ],
+    "total_zat": 1203744698852579
+  }
+}

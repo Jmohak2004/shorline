@@ -1,0 +1,75 @@
+{
+  "unseen_p2sh_funded": 23542,
+  "unseen_p2sh_zat": 43037997681367,
+  "templates": [
+    {
+      "redeem": {
+        "type": "salted_multisig",
+        "m": 2,
+        "n": 3,
+        "salt_bytes": 4
+      },
+      "script_template": "52210352d50656796dd79e3e3385c29636d849b8705c9c6d9b86a1717adc38e4a567c72102f39d0b69c3b8e06030ef9dc295cf8c848f51e398fe85414e33509afdc7f01fb321027072ba2319ead2b0b387d69d36508f57b397da8d4ac76ea64676ee8a1356dae053af04????????75740087",
+      "public_keys": [
+        "0352d50656796dd79e3e3385c29636d849b8705c9c6d9b86a1717adc38e4a567c7",
+        "02f39d0b69c3b8e06030ef9dc295cf8c848f51e398fe85414e33509afdc7f01fb3",
+        "027072ba2319ead2b0b387d69d36508f57b397da8d4ac76ea64676ee8a1356dae0"
+      ],
+      "revealed_addresses": 39,
+      "revealed_zat": 99604062023755,
+      "rediscovered_revealed": 39,
+      "unseen_matches": [
+        {
+          "address": "t3akec5wxr9Gsraoneozma57XeLF93SEJtS",
+          "zat": 15000000000,
+          "salt": "e7d0f294"
+        },
+        {
+          "address": "t3d5ZUXZ9tCqJrxDpNPUTvoyRPrbmtSogKG",
+          "zat": 1799363000,
+          "salt": "dcd5215f"
+        },
+        {
+          "address": "t3YW6QjLrHuDyRMuPdzXVANeRtnxxE5vVXv",
+          "zat": 55502300,
+          "salt": "fb257c15"
+        },
+        {
+          "address": "t3Wfw7S8HfH71XctVZySVDNYwoTYpUds9bv",
+          "zat": 25550000,
+          "salt": "ab3b7637"
+        },
+        {
+          "address": "t3V6mYUawMVRWYvsZUT9EwKfg8FQBUpigiT",
+          "zat": 3900000,
+          "salt": "94894d55"
+        },
+        {
+          "address": "t3XBKbB9AwqdsE9Lds2SeNSyb2NrAjmT1ML",
+          "zat": 3397475,
+          "salt": "9dc59ed1"
+        },
+        {
+          "address": "t3eV9kkfuh65FvboRGyfypScn1YevgdDTAv",
+          "zat": 155500,
+          "salt": "efb6efe7"
+        },
+        {
+          "address": "t3gLd9JQpyb4FV3cu1gCZXsNZKkfF3GZFpj",
+          "zat": 29843,
+          "salt": "c9ac503a"
+        },
+        {
+          "address": "t3UBNQeSHKWJtRSFKUShF1kvPfxsgbnGmmy",
+          "zat": 16944,
+          "salt": "a6c8ca45"
+        }
+      ],
+      "unseen_matched_zat": 16887915062,
+      "salts_searched": 4294967296,
+      "seconds": 280.110109
+    }
+  ],
+  "matched_addresses": 9,
+  "matched_zat": 16887915062
+}

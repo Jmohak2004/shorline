@@ -1,0 +1,6 @@
+target/
+*.log
+.DS_Store
+__pycache__/
+# lookup shards ship as a release asset (see README → Dataset)
+web/data/lookup/

@@ -1,0 +1,96 @@
+connected https://zec.rocks:443: ECC LightWalletD v0.6.1 height=3583823
+connected https://na.zec.rocks:443: ECC LightWalletD v0.6.1 height=3583823
+connected https://eu.zec.rocks:443: ECC LightWalletD v0.6.1 height=3583823
+connected https://ap.zec.rocks:443: ECC LightWalletD v0.6.1 height=3583822
+scanning blocks 0..=3583823 in chunks of 2000 with 8 parallel downloads
+h=    7999 (  0.2%)    284 blk/s | utxos=760203 entities=75497 | exposed=10.3k hidden=5.3k p2sh?=4.0k total=19.6k ZEC | missing=0
+h=   29999 (  0.8%)    695 blk/s | utxos=3445058 entities=124955 | exposed=172.1k hidden=26.4k p2sh?=50.0k total=248.5k ZEC | missing=0
+h=   55999 (  1.6%)    851 blk/s | utxos=7598116 entities=167256 | exposed=408.1k hidden=92.2k p2sh?=51.5k total=551.8k ZEC | missing=0
+h=   75999 (  2.1%)    924 blk/s | utxos=10193434 entities=198157 | exposed=492.8k hidden=246.2k p2sh?=12.9k total=751.8k ZEC | missing=0
+h=   93999 (  2.6%)    940 blk/s | utxos=12805654 entities=242858 | exposed=604.2k hidden=375.3k p2sh?=57.9k total=1.037M ZEC | missing=0
+h=  107999 (  3.0%)    663 blk/s | utxos=7244142 entities=280087 | exposed=702.4k hidden=449.1k p2sh?=48.6k total=1.200M ZEC | missing=0
+h=  125999 (  3.5%)    705 blk/s | utxos=9121144 entities=361984 | exposed=841.1k hidden=539.3k p2sh?=5.1k total=1.385M ZEC | missing=0
+h=  143999 (  4.0%)    669 blk/s | utxos=13007444 entities=514163 | exposed=934.9k hidden=675.2k p2sh?=5.8k total=1.616M ZEC | missing=0
+h=  159999 (  4.5%)    677 blk/s | utxos=16317585 entities=617905 | exposed=1.019M hidden=774.8k p2sh?=1.5k total=1.796M ZEC | missing=0
+h=  163999 (  4.6%)    644 blk/s | utxos=16924799 entities=645943 | exposed=1.038M hidden=793.3k p2sh?=11.5k total=1.843M ZEC | missing=0
+h=  179999 (  5.0%)    646 blk/s | utxos=18435526 entities=763763 | exposed=1.151M hidden=864.0k p2sh?=7.3k total=2.023M ZEC | missing=0
+h=  181999 (  5.1%)    616 blk/s | utxos=18815201 entities=777657 | exposed=1.143M hidden=892.1k p2sh?=12.3k total=2.048M ZEC | missing=0
+h=  197999 (  5.5%)    595 blk/s | utxos=19889394 entities=922792 | exposed=1.303M hidden=949.6k p2sh?=744.09 total=2.253M ZEC | missing=0
+h=  209999 (  5.9%)    595 blk/s | utxos=20372328 entities=1007892 | exposed=1.422M hidden=975.1k p2sh?=761.67 total=2.398M ZEC | missing=0
+h=  217999 (  6.1%)    592 blk/s | utxos=21320332 entities=1068641 | exposed=1.440M hidden=1.036M p2sh?=14.6k total=2.490M ZEC | missing=0
+h=  227999 (  6.4%)    581 blk/s | utxos=21791279 entities=1172630 | exposed=1.448M hidden=1.142M p2sh?=1.9k total=2.592M ZEC | missing=0
+h=  231999 (  6.5%)    569 blk/s | utxos=22120861 entities=1218168 | exposed=1.499M hidden=1.135M p2sh?=6.5k total=2.640M ZEC | missing=0
+h=  235999 (  6.6%)    547 blk/s | utxos=22523323 entities=1298522 | exposed=1.476M hidden=1.192M p2sh?=16.4k total=2.684M ZEC | missing=0
+h=  245999 (  6.9%)    545 blk/s | utxos=22699905 entities=1510042 | exposed=1.438M hidden=1.351M p2sh?=41.4k total=2.830M ZEC | missing=0
+h=  251999 (  7.0%)    539 blk/s | utxos=23631856 entities=1629100 | exposed=1.392M hidden=1.462M p2sh?=56.4k total=2.910M ZEC | missing=0
+h=  261999 (  7.3%)    526 blk/s | utxos=24899819 entities=1784940 | exposed=1.510M hidden=1.463M p2sh?=37.5k total=3.011M ZEC | missing=0
+h=  269999 (  7.5%)    512 blk/s | utxos=25482439 entities=1887394 | exposed=1.521M hidden=1.528M p2sh?=13.5k total=3.062M ZEC | missing=0
+h=  285999 (  8.0%)    524 blk/s | utxos=26837550 entities=2048614 | exposed=1.649M hidden=1.564M p2sh?=9.2k total=3.222M ZEC | missing=0
+h=  289999 (  8.1%)    510 blk/s | utxos=27668224 entities=2078114 | exposed=1.657M hidden=1.596M p2sh?=2.7k total=3.256M ZEC | missing=0
+h=  305999 (  8.5%)    508 blk/s | utxos=29076554 entities=2182349 | exposed=1.776M hidden=1.667M p2sh?=2.9k total=3.446M ZEC | missing=0
+h=  313999 (  8.8%)    508 blk/s | utxos=30247193 entities=2242154 | exposed=1.897M hidden=1.654M p2sh?=2.8k total=3.553M ZEC | missing=0
+h=  317999 (  8.9%)    479 blk/s | utxos=30105203 entities=2276170 | exposed=1.918M hidden=1.672M p2sh?=2.8k total=3.593M ZEC | missing=0
+h=  325999 (  9.1%)    467 blk/s | utxos=27788300 entities=2353368 | exposed=1.967M hidden=1.712M p2sh?=20.3k total=3.699M ZEC | missing=0
+h=  333999 (  9.3%)    467 blk/s | utxos=26307597 entities=2416000 | exposed=2.011M hidden=1.770M p2sh?=40.4k total=3.821M ZEC | missing=0
+h=  339999 (  9.5%)    442 blk/s | utxos=24284913 entities=2451679 | exposed=2.008M hidden=1.825M p2sh?=55.5k total=3.888M ZEC | missing=0
+h=  355999 (  9.9%)    452 blk/s | utxos=22306775 entities=2521743 | exposed=2.154M hidden=1.820M p2sh?=95.8k total=4.069M ZEC | missing=0
+h=  357999 ( 10.0%)    444 blk/s | utxos=21493587 entities=2532321 | exposed=2.172M hidden=1.821M p2sh?=100.8k total=4.094M ZEC | missing=0
+h=  385999 ( 10.8%)    470 blk/s | utxos=20698143 entities=2669118 | exposed=2.206M hidden=2.031M p2sh?=131.3k total=4.368M ZEC | missing=0
+h=  403999 ( 11.3%)    483 blk/s | utxos=21067632 entities=2753487 | exposed=2.298M hidden=2.139M p2sh?=176.9k total=4.614M ZEC | missing=0
+h=  425999 ( 11.9%)    496 blk/s | utxos=21617330 entities=2847381 | exposed=2.461M hidden=2.243M p2sh?=167.9k total=4.872M ZEC | missing=0
+h=  447999 ( 12.5%)    512 blk/s | utxos=21976546 entities=2918846 | exposed=2.542M hidden=2.396M p2sh?=137.4k total=5.076M ZEC | missing=0
+h=  471999 ( 13.2%)    525 blk/s | utxos=21834904 entities=2994109 | exposed=2.670M hidden=2.622M p2sh?=144.4k total=5.436M ZEC | missing=0
+h=  507999 ( 14.2%)    554 blk/s | utxos=21691806 entities=3116460 | exposed=2.971M hidden=2.752M p2sh?=157.7k total=5.881M ZEC | missing=0
+h=  541999 ( 15.1%)    580 blk/s | utxos=21791354 entities=3292938 | exposed=3.118M hidden=3.109M p2sh?=124.7k total=6.352M ZEC | missing=0
+h=  573999 ( 16.0%)    602 blk/s | utxos=21803369 entities=3461075 | exposed=3.108M hidden=3.383M p2sh?=164.4k total=6.656M ZEC | missing=0
+h=  597999 ( 16.7%)    612 blk/s | utxos=21052482 entities=3713851 | exposed=3.250M hidden=3.488M p2sh?=228.6k total=6.967M ZEC | missing=0
+h=  603999 ( 16.9%)    608 blk/s | utxos=18719278 entities=3737691 | exposed=3.353M hidden=3.445M p2sh?=244.5k total=7.042M ZEC | missing=0
+h=  651999 ( 18.2%)    645 blk/s | utxos=16772692 entities=3894913 | exposed=3.625M hidden=3.731M p2sh?=280.7k total=7.636M ZEC | missing=0
+h=  719999 ( 20.1%)    701 blk/s | utxos=16756902 entities=4012537 | exposed=4.001M hidden=3.807M p2sh?=232.0k total=8.040M ZEC | missing=0
+h=  797999 ( 22.3%)    765 blk/s | utxos=16682945 entities=4153305 | exposed=4.101M hidden=4.036M p2sh?=393.3k total=8.529M ZEC | missing=0
+h=  851999 ( 23.8%)    805 blk/s | utxos=16022084 entities=4262469 | exposed=4.405M hidden=4.095M p2sh?=332.0k total=8.832M ZEC | missing=0
+h=  931999 ( 26.0%)    867 blk/s | utxos=15914112 entities=4500603 | exposed=4.744M hidden=4.067M p2sh?=428.7k total=9.240M ZEC | missing=0
+h=  981999 ( 27.4%)    899 blk/s | utxos=16768379 entities=4668051 | exposed=4.892M hidden=4.152M p2sh?=472.3k total=9.516M ZEC | missing=0
+h= 1031999 ( 28.8%)    929 blk/s | utxos=17881575 entities=4816541 | exposed=5.092M hidden=4.276M p2sh?=407.1k total=9.775M ZEC | missing=0
+h= 1083999 ( 30.2%)    961 blk/s | utxos=18596153 entities=4982741 | exposed=4.790M hidden=4.735M p2sh?=352.2k total=9.877M ZEC | missing=0
+h= 1123999 ( 31.4%)    982 blk/s | utxos=18717230 entities=5138130 | exposed=4.818M hidden=4.960M p2sh?=307.1k total=10.085M ZEC | missing=0
+h= 1161999 ( 32.4%)    999 blk/s | utxos=18346013 entities=5311840 | exposed=4.707M hidden=5.227M p2sh?=309.2k total=10.243M ZEC | missing=0
+  ! chunk 1204000-1205999 attempt 1 on server #2 failed: status: Internal, message: "unexpected EOF", details: [], metadata: MetadataMap { headers: {} }
+h= 1199999 ( 33.5%)   1008 blk/s | utxos=18956448 entities=5463642 | exposed=4.830M hidden=5.223M p2sh?=303.6k total=10.357M ZEC | missing=0
+h= 1231999 ( 34.4%)   1022 blk/s | utxos=19197001 entities=5628192 | exposed=4.722M hidden=5.451M p2sh?=319.2k total=10.492M ZEC | missing=0
+h= 1265999 ( 35.3%)   1037 blk/s | utxos=20082734 entities=5795223 | exposed=4.770M hidden=5.540M p2sh?=281.7k total=10.591M ZEC | missing=0
+h= 1305999 ( 36.4%)   1055 blk/s | utxos=21218599 entities=5920841 | exposed=4.820M hidden=5.494M p2sh?=307.9k total=10.623M ZEC | missing=0
+h= 1347999 ( 37.6%)   1074 blk/s | utxos=20739777 entities=6028757 | exposed=4.724M hidden=5.631M p2sh?=366.2k total=10.721M ZEC | missing=0
+h= 1381999 ( 38.6%)   1087 blk/s | utxos=20179319 entities=6126881 | exposed=4.686M hidden=5.610M p2sh?=378.3k total=10.675M ZEC | missing=0
+h= 1435999 ( 40.1%)   1116 blk/s | utxos=20226107 entities=6275893 | exposed=4.795M hidden=5.619M p2sh?=384.8k total=10.799M ZEC | missing=0
+h= 1499999 ( 41.9%)   1152 blk/s | utxos=20963612 entities=6497183 | exposed=4.470M hidden=6.204M p2sh?=394.8k total=11.069M ZEC | missing=0
+h= 1567999 ( 43.8%)   1187 blk/s | utxos=21995996 entities=6669686 | exposed=4.487M hidden=6.529M p2sh?=398.2k total=11.413M ZEC | missing=0
+h= 1593999 ( 44.5%)   1193 blk/s | utxos=21093673 entities=6731330 | exposed=4.597M hidden=6.522M p2sh?=378.0k total=11.497M ZEC | missing=0
+h= 1661999 ( 46.4%)   1229 blk/s | utxos=20687615 entities=6876474 | exposed=4.579M hidden=6.665M p2sh?=388.7k total=11.633M ZEC | missing=0
+h= 1735999 ( 48.4%)   1268 blk/s | utxos=21417541 entities=7142102 | exposed=4.174M hidden=7.241M p2sh?=401.3k total=11.817M ZEC | missing=0
+h= 1787999 ( 49.9%)   1288 blk/s | utxos=20042806 entities=7209131 | exposed=4.364M hidden=7.169M p2sh?=435.0k total=11.968M ZEC | missing=0
+h= 1857999 ( 51.8%)   1322 blk/s | utxos=20438787 entities=7295046 | exposed=4.494M hidden=7.227M p2sh?=358.5k total=12.080M ZEC | missing=0
+h= 1865999 ( 52.1%)   1310 blk/s | utxos=19130408 entities=7305348 | exposed=4.620M hidden=7.160M p2sh?=356.9k total=12.137M ZEC | missing=0
+h= 1935999 ( 54.0%)   1344 blk/s | utxos=14932094 entities=7399553 | exposed=4.495M hidden=7.350M p2sh?=399.9k total=12.245M ZEC | missing=0
+h= 2027999 ( 56.6%)   1393 blk/s | utxos=15187177 entities=7601419 | exposed=5.764M hidden=5.916M p2sh?=777.9k total=12.458M ZEC | missing=0
+h= 2111999 ( 58.9%)   1434 blk/s | utxos=15421848 entities=7755930 | exposed=5.530M hidden=6.220M p2sh?=794.2k total=12.544M ZEC | missing=0
+h= 2193999 ( 61.2%)   1474 blk/s | utxos=16353442 entities=7861989 | exposed=5.477M hidden=6.478M p2sh?=832.5k total=12.787M ZEC | missing=0
+h= 2243999 ( 62.6%)   1492 blk/s | utxos=18162391 entities=7910251 | exposed=5.337M hidden=6.709M p2sh?=850.4k total=12.897M ZEC | missing=0
+h= 2311999 ( 64.5%)   1522 blk/s | utxos=20496635 entities=7971236 | exposed=5.926M hidden=6.813M p2sh?=436.2k total=13.176M ZEC | missing=0
+h= 2443999 ( 68.2%)   1591 blk/s | utxos=20643722 entities=8105661 | exposed=6.049M hidden=7.477M p2sh?=77.6k total=13.604M ZEC | missing=0
+h= 2543999 ( 71.0%)   1640 blk/s | utxos=21298585 entities=8221818 | exposed=5.805M hidden=7.836M p2sh?=75.0k total=13.716M ZEC | missing=0
+h= 2601999 ( 72.6%)   1661 blk/s | utxos=24191901 entities=8272298 | exposed=5.087M hidden=8.677M p2sh?=68.3k total=13.832M ZEC | missing=0
+h= 2669999 ( 74.5%)   1687 blk/s | utxos=27088880 entities=8312951 | exposed=4.783M hidden=9.005M p2sh?=249.9k total=14.038M ZEC | missing=0
+h= 2815999 ( 78.6%)   1762 blk/s | utxos=28298637 entities=8398608 | exposed=4.944M hidden=8.491M p2sh?=522.5k total=13.958M ZEC | missing=0
+h= 3079999 ( 85.9%)   1908 blk/s | utxos=28181677 entities=8516991 | exposed=5.557M hidden=6.285M p2sh?=562.3k total=12.404M ZEC | missing=0
+h= 3141999 ( 87.7%)   1928 blk/s | utxos=27853818 entities=8738758 | exposed=5.511M hidden=5.820M p2sh?=158.7k total=11.490M ZEC | missing=0
+h= 3263999 ( 91.1%)   1985 blk/s | utxos=27638377 entities=8955266 | exposed=5.732M hidden=5.662M p2sh?=130.5k total=11.525M ZEC | missing=0
+h= 3375999 ( 94.2%)   2033 blk/s | utxos=27556514 entities=9143546 | exposed=5.721M hidden=6.237M p2sh?=393.1k total=12.352M ZEC | missing=0
+h= 3509999 ( 97.9%)   2094 blk/s | utxos=27224368 entities=9381476 | exposed=5.868M hidden=5.697M p2sh?=392.5k total=11.958M ZEC | missing=0
+h= 3583823 (100.0%)   2131 blk/s | utxos=27201028 entities=9470312 | exposed=7.240M hidden=4.367M p2sh?=430.4k total=12.037M ZEC | missing=0
+catching up 3583824..=3583892 to match the pools source
+cross-check @3583892: Zebra transparent pool = 12037446.98852579 ZEC, Shorline UTXO set = 12037446.98852579 ZEC => EXACT MATCH
+P2SH survey: fetching first-spend transactions for 5571 funded, revealed t3 addresses
+P2SH survey: classified 5571 of 5571
+wrote dataset to /private/tmp/claude-501/-Users-mohakjaiswal-solsolana-/621f7110-eca5-431a-bdb1-ac31ee56c194/scratchpad/full in 1859s
+exit=0

@@ -1,0 +1,32 @@
+$ shorline resurvey --data web/data
+resurvey: re-fetching 5571 first-spend transactions
+resurvey: classified 5571 of 5571
+  data_envelope                1262 addresses       3.42827430 ZEC
+  multisig_1_of_1              2 addresses       0.02232327 ZEC
+  multisig_1_of_2              3 addresses       0.02530100 ZEC
+  multisig_2_of_2              408 addresses  139317.34928951 ZEC
+  multisig_2_of_3              3825 addresses  232721.31054923 ZEC
+  multisig_2_of_4              4 addresses       0.12686146 ZEC
+  multisig_2_of_6              1 addresses       2.04426530 ZEC
+  multisig_2_of_8              1 addresses       0.08978000 ZEC
+  multisig_3_of_7              1 addresses       0.00498832 ZEC
+  multisig_4_of_4              1 addresses       0.00220700 ZEC
+  multisig_4_of_5              1 addresses       0.00040000 ZEC
+  multisig_6_of_8              1 addresses      14.84192115 ZEC
+  multisig_7_of_12             1 addresses   12244.28712998 ZEC
+  other                        9 addresses       5.28274604 ZEC
+  p2pk_wrapped                 4 addresses       0.01818763 ZEC
+  p2pkh_wrapped                8 addresses       0.55316408 ZEC
+  salted_multisig_2_of_3       39 addresses  996040.62023755 ZEC
+
+$ shorline salt-sweep --data web/data
+salt sweep: 23542 funded unseen P2SH addresses (430379 ZEC) as targets
+  template salted_multisig_2_of_3 (39 revealed addresses): searching 4294967296 salts on 10 threads
+    280s: rediscovered 39/39 revealed addresses (self-check); matched 9 unseen addresses holding 168.87915062 ZEC
+wrote web/data/salted_exposure.json: 9 unseen P2SH addresses (168.87915062 ZEC) belong to salted families whose keys are already public
+
+$ shorline check t1gsBrGZGMyDGZw2icGnMpVBuEGVWip5kH8
+t1gsBrGZGMyDGZw2icGnMpVBuEGVWip5kH8
+  type:     P2PKH (t1)
+  balance:  259122.12559900 ZEC in 13 UTXOs
+  status:   EXPOSED: public key revealed at height 3140430 by tx cdd6f0b2b75377328b41a318a6fa994f78d115985b29e172f1ee5c901e44cbe6
