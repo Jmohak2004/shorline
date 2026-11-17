@@ -4,8 +4,9 @@ on:
   push:
     branches: [main]
     paths: ["web/**", ".github/workflows/pages.yml"]
-  release:
-    types: [published]
+  # After publishing a new `data-<height>` release, run this workflow manually
+  # (`gh workflow run pages.yml`). Release events run on the tag ref, which the
+  # github-pages environment does not allow to deploy.
   workflow_dispatch:
 
 permissions:
