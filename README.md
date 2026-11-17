@@ -11,6 +11,8 @@ A verifiable, chain-wide quantum-exposure survey of Zcash. It sorts every zatosh
 [![CI](https://github.com/Jmohak2004/shorline/actions/workflows/ci.yml/badge.svg)](https://github.com/Jmohak2004/shorline/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+<a href="https://jmohak2004.github.io/shorline/"><img src="web/og.png" alt="Shorline: 7.24M ZEC (42.5% of supply) sits behind public keys already on the blockchain" width="820"></a>
+
 </div>
 
 ---
@@ -42,6 +44,11 @@ A verifiable, chain-wide quantum-exposure survey of Zcash. It sorts every zatosh
 
 Data: [`web/data/`](web/data) · full write-up: [docs/FINDINGS.md](docs/FINDINGS.md) · reproduce with `cargo run --release -- scan`.
 <!-- FINDINGS:END -->
+
+<p align="center">
+  <img src="docs/img/fate.jpg" alt="Every ZEC, by quantum fate" width="49%">
+  <img src="docs/img/history.jpg" alt="Transparent ZEC by exposure, 2016 to today" width="49%">
+</p>
 
 ## Why this exists
 
