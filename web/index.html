@@ -179,6 +179,13 @@
           <button class="btn" type="submit">Check</button>
         </form>
         <div class="result" id="check-result" aria-live="polite"></div>
+        <div class="nfc" id="nfc-box" hidden>
+          <div class="nfc-row">
+            <button class="btn ghost" id="nfc-scan" type="button">Tap an NFC tag to check</button>
+            <button class="btn ghost" id="nfc-write" type="button">Write this address to a tag</button>
+          </div>
+          <p class="privacy-note" id="nfc-msg">Stick a tag on a hardware-wallet box, a paper backup or an exchange deposit card. Tapping it with a phone opens this checker with the address filled in. The tag holds only a public address link, never a key, and the address sits after the # so it never reaches any server.</p>
+        </div>
         <p class="privacy-note">For a live answer straight from the chain, run <code>shorline check &lt;address&gt;</code>.</p>
       </div>
     </div>

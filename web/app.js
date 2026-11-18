@@ -738,6 +738,46 @@ $("#check-form").addEventListener("submit", (e) => onCheck(e).catch((err) => {
 }));
 
 const state = {};
+
+// ---- NFC: deep link (#check=<address>) + Web NFC scan/write (Chrome on Android).
+// iPhones read the same tag natively: tapping opens the URL, and the hash triggers the check.
+const SITE = "https://jmohak2004.github.io/shorline/";
+function checkFromHash() {
+  const m = /[#&]check=([^&]+)/.exec(location.hash);
+  if (!m) return;
+  $("#check-input").value = decodeURIComponent(m[1]).trim();
+  $("#check").scrollIntoView();
+  $("#check-form").requestSubmit();
+}
+function nfcSetup() {
+  const msg = $("#nfc-msg");
+  if (!("NDEFReader" in window)) return; // unsupported browsers keep the plain checker
+  $("#nfc-box").hidden = false;
+  $("#nfc-scan").addEventListener("click", async () => {
+    try {
+      const r = new NDEFReader();
+      await r.scan();
+      msg.textContent = "Hold a tag against the back of your phone…";
+      r.onreading = (e) => {
+        for (const rec of e.message.records) {
+          const text = new TextDecoder(rec.encoding || "utf-8").decode(rec.data);
+          const m = /check=([^&#\s]+)/.exec(text) || /\b(t[13][1-9A-HJ-NP-Za-km-z]{30,36}|tex1[a-z0-9]{30,})\b/.exec(text);
+          if (m) { $("#check-input").value = decodeURIComponent(m[1]); $("#check-form").requestSubmit(); msg.textContent = "Tag read."; return; }
+        }
+        msg.textContent = "That tag has no Zcash address on it.";
+      };
+    } catch (err) { msg.textContent = "NFC unavailable: " + err.message; }
+  });
+  $("#nfc-write").addEventListener("click", async () => {
+    const addr = $("#check-input").value.trim();
+    if (!/^(t[13]|tex1)/i.test(addr)) { msg.textContent = "Type a t1…, t3… or tex1… address first."; return; }
+    try {
+      msg.textContent = "Hold a blank tag against your phone to write it…";
+      await new NDEFReader().write({ records: [{ recordType: "url", data: SITE + "#check=" + encodeURIComponent(addr) }] });
+      msg.textContent = "Done. Tapping this tag now opens Shorline with the address pre-filled.";
+    } catch (err) { msg.textContent = "Couldn't write the tag: " + err.message; }
+  });
+}
 async function loadJSON(name) {
   const r = await fetch(DATA + name, { cache: "no-cache" });
   if (!r.ok) throw new Error(`${name}: HTTP ${r.status}`);
@@ -761,6 +801,8 @@ async function loadJSON(name) {
     renderSalted(SALT);
     renderYcash(Y);
     renderTop(TOP);
+    nfcSetup();
+    checkFromHash();
   } catch (err) {
     $("#hero-caption").textContent = "Couldn't load the dataset: " + err.message;
     console.error(err);

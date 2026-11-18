@@ -163,6 +163,16 @@ cargo run --release -- ycash --data web/data --top 10000
 python3 scripts/findings.py && python3 scripts/og_image.py
 ```
 
+## NFC: tap a tag, see your exposure
+
+The slowest, most error-prone step of checking an address is getting it from a physical object (a hardware-wallet box, a paper backup, an exchange deposit card) into a phone. NFC removes that step.
+
+* **Write once.** In the dashboard's checker, enter an address and press *Write this address to a tag* (Chrome on Android, Web NFC). The tag stores one URL record: `https://jmohak2004.github.io/shorline/#check=<address>`.
+* **Tap anytime.** Any phone that taps the tag opens Shorline and runs the check immediately. iPhones do this natively with no app; Android can also use *Tap an NFC tag to check* on the page.
+* **Private and safe by design.** The address sits after the `#`, which browsers never send to a server. The tag holds only a public address link and never a key or seed, so losing it leaks nothing.
+
+Use it to label cold storage with a live "is this address exposed?" tap, or to put a verifiable check on a deposit card you hand to someone.
+
 ## Dataset
 
 `web/data/` holds the latest snapshot (schema in [METHODOLOGY §6](docs/METHODOLOGY.md#6-published-dataset-webdata)):
