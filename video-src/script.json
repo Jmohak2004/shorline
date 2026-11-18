@@ -1,0 +1,81 @@
+{
+  "voice": "af_heart",
+  "speed": 1.0,
+  "scenes": [
+    { "id": "s01", "name": "Hook: Q-Day", "lines": [
+      { "id": "l01", "cap": "Imagine a machine that could pick every lock on Earth at once.", "tts": "Imagine a machine that could pick every lock on Earth, at once." },
+      { "id": "l02", "cap": "Cryptographers have a name for the day it arrives: Q-Day.", "tts": "Cryptographers have a name for the day it arrives. Q Day." },
+      { "id": "l03", "cap": "We built Shorline to answer one question for Zcash: how much ZEC would survive it?", "tts": "We built Shorline to answer one question for Zee cash. How much zeck would survive it?" }
+    ]},
+    { "id": "s02", "name": "Keys and locks", "lines": [
+      { "id": "l04", "cap": "Every coin is guarded by a pair of keys.", "tts": "Every coin is guarded by a pair of keys." },
+      { "id": "l05", "cap": "Your private key is the secret that lets you spend.", "tts": "Your private key is the secret that lets you spend." },
+      { "id": "l06", "cap": "Your public key is like the shape of your lock: anyone may see it.", "tts": "Your public key is like the shape of your lock. Anyone may see it." },
+      { "id": "l07", "cap": "And a transparent Zcash address, a t-address, is only a fingerprint of that lock, called a hash.", "tts": "And a transparent Zee cash address, a tee address, is only a fingerprint of that lock, called a hash." }
+    ]},
+    { "id": "s03", "name": "Shor's algorithm", "lines": [
+      { "id": "l08", "cap": "Today, turning a public key back into its private key is practically impossible.", "tts": "Today, turning a public key back into its private key is practically impossible." },
+      { "id": "l09", "cap": "But Shor's algorithm, on a large quantum computer, makes it easy. Experts call this breaking the discrete logarithm.", "tts": "But Shor's algorithm, on a large quantum computer, makes it easy. Experts call this, breaking the discrete logarithm." },
+      { "id": "l10", "cap": "What it cannot do is reverse a hash. So while only the fingerprint is public, your coins are safe.", "tts": "What it cannot do, is reverse a hash. So while only the fingerprint is public, your coins are safe." }
+    ]},
+    { "id": "s04", "name": "The catch", "lines": [
+      { "id": "l11", "cap": "Here's the catch.", "tts": "Here's the catch." },
+      { "id": "l12", "cap": "The first time you spend from an address, its public key is written on the blockchain forever.", "tts": "The first time you spend from an address, its public key is written on the blockchain, forever." },
+      { "id": "l13", "cap": "Everything left behind, and anything sent there later, is exposed.", "tts": "Everything left behind, and anything sent there later, is exposed." },
+      { "id": "l14", "cap": "Busy wallets reuse addresses all day, turning safe coins into targets.", "tts": "Busy wallets reuse addresses all day, turning safe coins into targets." }
+    ]},
+    { "id": "s05", "name": "Zcash's plan", "lines": [
+      { "id": "l15", "cap": "Zcash is already preparing.", "tts": "Zee cash is already preparing." },
+      { "id": "l16", "cap": "In July, the Ironwood upgrade, ZIP 2005, made new shielded notes recoverable after Q-Day.", "tts": "In July, the Ironwood upgrade, zip twenty oh five, made new shielded notes recoverable after Q Day." },
+      { "id": "l17", "cap": "Funds left in the older Sprout, Sapling and Orchard pools would be stranded.", "tts": "Funds left in the older Sprout, Sapling, and Orchard pools, would be stranded." },
+      { "id": "l18", "cap": "And ZIP 2007 asks which transparent coins could be saved. Its first open task: survey the entire chain. No one had published it.", "tts": "And zip twenty oh seven asks which transparent coins could be saved. Its first open task: survey the entire chain. No one had published it." }
+    ]},
+    { "id": "s06", "name": "How Shorline works", "lines": [
+      { "id": "l19", "cap": "So we built Shorline.", "tts": "So, we built Shorline." },
+      { "id": "l20", "cap": "It streams every Zcash block since 2016 from public lightwalletd servers.", "tts": "It streams every Zee cash block since twenty sixteen, from public light wallet D servers." },
+      { "id": "l21", "cap": "A Rust engine replays all 191 million transparent outputs, rebuilding the UTXO set, the list of unspent coins, and records the moment each address's key went public.", "tts": "A Rust engine replays all one hundred ninety one million transparent outputs, rebuilding the U T X O set, the list of unspent coins, and records the moment each address's key went public." },
+      { "id": "l22", "cap": "No full node. No disk. About thirty minutes.", "tts": "No full node. No disk. About thirty minutes." }
+    ]},
+    { "id": "s07", "name": "Verified", "lines": [
+      { "id": "l23", "cap": "Then it checks itself.", "tts": "Then, it checks itself." },
+      { "id": "l24", "cap": "A zatoshi is the smallest unit of ZEC: one hundred-millionth of a coin.", "tts": "A zatoshi is the smallest unit of zeck. One hundred millionth of a coin." },
+      { "id": "l25", "cap": "Shorline's total matches the Zebra node's transparent value pool to the very last zatoshi.", "tts": "Shorline's total matches the Zebra node's transparent value pool, to the very last zatoshi." }
+    ]},
+    { "id": "s08", "name": "The answer", "lines": [
+      { "id": "l26", "cap": "So, here's the answer.", "tts": "So, here's the answer." },
+      { "id": "l27", "cap": "7.24 million ZEC, 42.5% of all ZEC in existence, sits behind public keys already on the blockchain.", "tts": "Seven point two four million zeck. Forty two point five percent of all zeck in existence, sits behind public keys already on the blockchain." },
+      { "id": "l28", "cap": "At today's price, that's about $6.8 billion.", "tts": "At today's price, that's about six point eight billion dollars." },
+      { "id": "l29", "cap": "4.37 million more is only hash-protected: safe until its owner spends.", "tts": "Four point three seven million more is only hash protected. Safe, until its owner spends." },
+      { "id": "l30", "cap": "749 thousand is stranded in old shielded pools, while 4.18 million is already recoverable in Ironwood.", "tts": "Seven hundred forty nine thousand is stranded in old shielded pools, while four point one eight million is already recoverable, in Ironwood." }
+    ]},
+    { "id": "s09", "name": "Getting worse", "lines": [
+      { "id": "l31", "cap": "And it's getting worse, not better.", "tts": "And it's getting worse, not better." },
+      { "id": "l32", "cap": "79% of the exposed coins went public since the start of 2025.", "tts": "Seventy nine percent of the exposed coins went public since the start of twenty twenty five." },
+      { "id": "l33", "cap": "In just nine days this autumn, a million ZEC flipped from safe to exposed, as big holders moved some coins and left the rest behind.", "tts": "In just nine days this autumn, a million zeck flipped from safe to exposed, as big holders moved some coins, and left the rest behind." }
+    ]},
+    { "id": "s10", "name": "Hidden exposure", "lines": [
+      { "id": "l34", "cap": "Shorline also finds what block explorers can't see.", "tts": "Shorline also finds what block explorers can't see." },
+      { "id": "l35", "cap": "One set of three keys guards 996 thousand ZEC across 39 multisig addresses, each differing only by a random salt.", "tts": "One set of three keys guards nine hundred ninety six thousand zeck, across thirty nine multi sig addresses, each differing only by a random salt." },
+      { "id": "l36", "cap": "Shorline tried all 4.3 billion salts in under five minutes, and unmasked 9 never-used addresses from the same family.", "tts": "Shorline tried all four point three billion salts in under five minutes, and unmasked nine never used addresses from the same family." },
+      { "id": "l37", "cap": "And through Ycash, a 2019 copy of Zcash with the same keys, it proved 51 safe-looking addresses are already exposed.", "tts": "And through Why cash, a twenty nineteen copy of Zee cash with the same keys, it proved fifty one safe looking addresses are already exposed." }
+    ]},
+    { "id": "s11", "name": "The dashboard", "lines": [
+      { "id": "l38", "cap": "Everything is live in an open dashboard.", "tts": "Everything is live, in an open dashboard." },
+      { "id": "l39", "cap": "Paste any address, and Shorline tells you whether it's exposed, privately.", "tts": "Paste any address, and Shorline tells you whether it's exposed. Privately." },
+      { "id": "l40", "cap": "Your browser downloads one shard shared by hundreds of addresses, so the site never learns which one is yours. That's called k-anonymity.", "tts": "Your browser downloads one shard, shared by hundreds of addresses, so the site never learns which one is yours. That's called, kay anonymity." }
+    ]},
+    { "id": "s12", "name": "Why it's different", "lines": [
+      { "id": "l41", "cap": "What makes Shorline different?", "tts": "What makes Shorline different?" },
+      { "id": "l42", "cap": "It's a complete, chain-wide survey that answers an open task from Zcash's own protocol team.", "tts": "It's a complete, chain wide survey, that answers an open task from Zee cash's own protocol team." },
+      { "id": "l43", "cap": "It proves its numbers to the zatoshi, finds hidden exposure, protects your privacy, and anyone can reproduce it with one command.", "tts": "It proves its numbers to the zatoshi, finds hidden exposure, protects your privacy, and anyone can reproduce it, with one command." }
+    ]},
+    { "id": "s13", "name": "Who it's for", "lines": [
+      { "id": "l44", "cap": "It's built for exchanges and custodians holding the biggest exposed balances, for wallet builders, and for the protocol team sizing ZIP 2007.", "tts": "It's built for exchanges and custodians holding the biggest exposed balances, for wallet builders, and for the protocol team sizing zip twenty oh seven." },
+      { "id": "l45", "cap": "Shorline covers 860 thousand funded addresses, refreshes in thirty minutes, and runs on free, public infrastructure.", "tts": "Shorline covers eight hundred sixty thousand funded addresses, refreshes in thirty minutes, and runs on free, public infrastructure." }
+    ]},
+    { "id": "s14", "name": "Close", "lines": [
+      { "id": "l46", "cap": "If you hold ZEC: sweep transparent coins into Ironwood, migrate old shielded funds with a ZIP 318 wallet, and rebuild multisigs with FROST.", "tts": "If you hold zeck: sweep transparent coins into Ironwood, migrate old shielded funds with a zip three eighteen wallet, and rebuild multi sigs with FROST." },
+      { "id": "l47", "cap": "Shorline. Know your exposure before Q-Day.", "tts": "Shorline. Know your exposure, before Q Day." }
+    ]}
+  ]
+}
