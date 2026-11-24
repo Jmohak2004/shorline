@@ -16,7 +16,7 @@ clap = { version = "4", features = ["derive"] }
 futures = "0.3"
 hex = "0.4"
 k256 = { version = "0.13", default-features = false, features = ["arithmetic"] }
-prost = "0.13"
+prost = "0.14"
 ripemd = "0.1"
 rustc-hash = "2"
 serde = { version = "1", features = ["derive"] }
