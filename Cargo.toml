@@ -28,7 +28,7 @@ ureq = { version = "2", features = ["json"] }
 
 [build-dependencies]
 protox = "0.7"
-tonic-build = "0.12"
+tonic-build = "0.14"
 
 [profile.release]
 opt-level = 3
