@@ -122,6 +122,7 @@ pub fn write_all(
 
     // ---- per-entity aggregates -------------------------------------------
     let mut addr_counts = [0u64; N_CATS];
+    #[allow(clippy::type_complexity)]
     let mut per_cat: Vec<Vec<(u64, Kind, [u8; 20], &AddrState)>> = vec![Vec::new(); N_CATS];
     let mut exposure_by_year: BTreeMap<i32, u64> = BTreeMap::new();
     let mut dormancy: BTreeMap<&'static str, [u64; 2]> = BTreeMap::new(); // [exposed, hidden]

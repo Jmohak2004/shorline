@@ -36,6 +36,7 @@ pub struct Candidate {
     pub hash: [u8; 20],
     pub zat: u64,
     pub category: u8,
+    #[allow(dead_code)] // kept for debugging output
     pub first_seen: u32,
 }
 
@@ -168,7 +169,7 @@ async fn find_reveal(
                 }
                 _ => script::hash160(last) == cand.hash,
             };
-            if hit && best.as_ref().map_or(true, |(h, _)| t.height < *h) {
+            if hit && best.as_ref().is_none_or(|(h, _)| t.height < *h) {
                 best = Some((t.height, txid_v4(&t.data)));
             }
         }
@@ -242,7 +243,7 @@ pub async fn run(
                 }
             }
         }
-        if done % 250 == 0 || done == total {
+        if done.is_multiple_of(250) || done == total {
             let z: u64 = revealed.iter().map(|r| r.zat).sum();
             eprintln!("  {done}/{total} checked | revealed on Ycash: {} addresses, {} ZEC | failed {failed}", revealed.len(), z / 100_000_000);
         }

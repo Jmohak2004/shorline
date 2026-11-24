@@ -55,6 +55,7 @@ pub const CAT_IDS: [&str; N_CATS] = [
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RevealReason {
+    #[allow(dead_code)] // discriminant 0 means "never revealed" in the packed state
     None = 0,
     /// The address was spent from (scriptSig reveals the key / redeem script).
     Spend = 1,
@@ -210,12 +211,6 @@ impl Engine {
         })
     }
 
-    pub fn lookup(&self, kind: Kind, hash: &[u8; 20]) -> Option<&AddrState> {
-        self.index
-            .get(&addrkey(kind, hash))
-            .map(|&id| &self.addrs[id as usize])
-    }
-
     fn get_or_insert(&mut self, kind: Kind, hash: &[u8; 20], h: u32) -> u32 {
         let k = addrkey(kind, hash);
         if let Some(&id) = self.index.get(&k) {
@@ -356,7 +351,7 @@ impl Engine {
         self.height = Some(h);
         self.tip_hash = b.hash.clone();
         self.n_blocks += 1;
-        if self.sample_every > 0 && h % self.sample_every == 0 {
+        if self.sample_every > 0 && h.is_multiple_of(self.sample_every) {
             self.push_sample();
         }
         Ok(())

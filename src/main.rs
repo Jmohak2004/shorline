@@ -16,6 +16,7 @@ mod salt;
 mod script;
 mod ycash;
 
+#[allow(clippy::doc_overindented_list_items)] // generated protobuf docs
 pub mod rpc {
     tonic::include_proto!("cash.z.wallet.sdk.rpc");
 }
@@ -594,7 +595,7 @@ async fn check(addresses: Vec<String>, server: String) -> Result<()> {
                 }
             }
             if !ok {
-                if wend - w + 1 <= 500 {
+                if wend - w < 500 {
                     bail!("could not list transactions for {addr} in blocks {w}-{wend}");
                 }
                 let mid = w + (wend - w) / 2;

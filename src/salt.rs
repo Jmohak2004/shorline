@@ -22,6 +22,9 @@
 //! self-check, the sweep must also rediscover the template's own revealed
 //! addresses.
 
+// sha2's compress256 API still takes generic-array 0.14 blocks; no replacement upstream yet.
+#![allow(deprecated)]
+
 use crate::report::P2shSurvey;
 use crate::report::BASE58;
 use crate::script::{self, Kind, RedeemKind};
@@ -29,6 +32,7 @@ use anyhow::{Context, Result};
 use ripemd::{Digest, Ripemd160};
 use rustc_hash::{FxHashMap, FxHashSet};
 use serde::Serialize;
+// sha2's compress256 API still takes generic-array 0.14 blocks; no replacement upstream yet.
 use sha2::digest::generic_array::GenericArray;
 use std::path::Path;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -40,6 +44,7 @@ const SHA256_IV: [u32; 8] = [
 ];
 
 /// A salted script with precomputed SHA-256 midstate.
+#[allow(dead_code)] // script/salt_off/salt_len document the template and are used by tests
 pub struct Template {
     pub script: Vec<u8>,
     pub salt_off: usize,
@@ -158,6 +163,7 @@ pub fn run(data: &Path, threads: usize, max_salt_bytes: usize) -> Result<()> {
     let survey: P2shSurvey =
         serde_json::from_str(&std::fs::read_to_string(data.join("p2sh_survey.json"))?)?;
     let p2sh = load_p2sh(data)?;
+    #[allow(clippy::type_complexity)]
     let unseen: Vec<(&[u8; 20], &(String, u64, u8))> =
         p2sh.iter().filter(|(_, v)| v.2 == 2).collect();
     let unseen_zat: u64 = unseen.iter().map(|(_, v)| v.1).sum();
@@ -168,6 +174,7 @@ pub fn run(data: &Path, threads: usize, max_salt_bytes: usize) -> Result<()> {
     );
 
     // Group revealed salted scripts into templates (salt bytes zeroed).
+    #[allow(clippy::type_complexity)]
     let mut groups: FxHashMap<Vec<u8>, (RedeemKind, usize, usize, Vec<(String, u64)>)> =
         FxHashMap::default();
     for e in &survey.entries {
