@@ -27,7 +27,7 @@ tonic = { version = "0.12", features = ["tls", "tls-webpki-roots"] }
 ureq = { version = "2", features = ["json"] }
 
 [build-dependencies]
-protox = "0.7"
+protox = "0.10"
 tonic-build = "0.12"
 
 [profile.release]
