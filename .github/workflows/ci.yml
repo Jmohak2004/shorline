@@ -3,16 +3,19 @@ name: CI
 on:
   push:
     branches: [main]
-    paths: ["src/**", "proto/**", "build.rs", "Cargo.toml", "Cargo.lock", ".github/workflows/ci.yml"]
   pull_request:
 
 jobs:
-  test:
+  rust:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --check
+      - run: cargo clippy --release --all-targets -- -D warnings
       - run: cargo test --release
       - run: cargo build --release
       # Live smoke test against public lightwalletd: replays the first 5,000
@@ -21,3 +24,17 @@ jobs:
         run: |
           ./target/release/shorline scan --end 5000 --no-pools --no-p2sh-survey --no-lookup --out /tmp/smoke
           python3 -c "import json,sys; s=json.load(open('/tmp/smoke/summary.json')); m=s['scan']['missing_prevouts']; print('blocks',s['scan']['blocks'],'missing',m); sys.exit(1 if m else 0)"
+
+  data-and-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dataset invariants
+        run: python3 scripts/verify_dataset.py
+      - name: Generated docs are up to date
+        run: |
+          python3 scripts/findings.py > /dev/null
+          python3 scripts/circuit_sizing.py
+          git diff --exit-code README.md docs/FINDINGS.md docs/CIRCUIT_SIZING.md
+      - name: Relative links resolve
+        run: python3 scripts/check_links.py
