@@ -6,7 +6,7 @@
 
 A verifiable, chain-wide quantum-exposure survey of Zcash. It sorts every zatoshi by what a discrete-log-breaking adversary could do to it, following ZIP 2005 and ZIP 2007.
 
-[**Live dashboard**](https://jmohak2004.github.io/shorline/) · [Methodology](docs/METHODOLOGY.md) · [Findings](docs/FINDINGS.md) · [ZIP 2007 discussion (#1302)](https://github.com/zcash/zips/issues/1302)
+[**Live dashboard**](https://jmohak2004.github.io/shorline/) · [Methodology](docs/METHODOLOGY.md) · [Findings](docs/FINDINGS.md) · [ZIP 2007 circuit sizing](docs/CIRCUIT_SIZING.md) · [ZIP 2007 discussion (#1302)](https://github.com/zcash/zips/issues/1302)
 
 [![CI](https://github.com/Jmohak2004/shorline/actions/workflows/ci.yml/badge.svg)](https://github.com/Jmohak2004/shorline/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -166,7 +166,7 @@ cargo run --release -- salt-sweep --data web/data
 cargo run --release -- ycash --data web/data --top 10000
 
 # Regenerate README findings, docs/FINDINGS.md and the social card
-python3 scripts/findings.py && python3 scripts/og_image.py
+python3 scripts/findings.py && python3 scripts/og_image.py && python3 scripts/circuit_sizing.py
 ```
 
 ## NFC: tap a tag, see your exposure
@@ -195,7 +195,7 @@ Use it to label cold storage with a live "is this address exposed?" tap, or to p
 
 ```
 src/
-  main.rs      CLI (scan / check / info), orchestration, catch-up + cross-check, P2SH survey
+  main.rs      CLI (scan / check / info / resurvey / salt-sweep / ycash), orchestration, cross-check
   engine.rs    UTXO replay engine, key-reveal tracking, category accounting (+ tests)
   script.rs    script classification, Hash160, t-address codec, both-encodings exposure (+ tests)
   net.rs       lightwalletd gRPC client, ordered parallel chunk fetch with retries
@@ -204,10 +204,13 @@ src/
   report.rs    dataset writer, lookup shards (+ tests)
   ycash.rs     cross-chain key-exposure check against the Ycash fork (+ tests)
   salt.rs      SHA-256-midstate salt sweep for salted P2SH templates (+ tests)
-scripts/       findings.py (README/FINDINGS generator), og_image.py (social card)
+scripts/       findings.py (README/FINDINGS generator), og_image.py (social card),
+               circuit_sizing.py (docs/CIRCUIT_SIZING.md)
 proto/         lightwallet-protocol definitions (MIT, Zcash developers)
 web/           dependency-free dashboard (HTML/CSS/JS, hand-built SVG charts)
-docs/          methodology, findings, run logs, launch material
+docs/          methodology, findings, circuit sizing, run logs, video, launch material
+video-src/     sources for the explainer video
+.github/       CI (build + tests) and Pages deploy workflows
 ```
 
 ## What to do about the results
@@ -223,10 +226,11 @@ docs/          methodology, findings, run logs, launch material
 
 ## Roadmap
 
+Done since the first release: [ZIP 2007 circuit sizing](docs/CIRCUIT_SIZING.md), the Ycash cross-check, the salt sweep, and NFC tap-to-check. Still open:
+
 * **More cross-chain exposure:** Bitcoin Hash160 reuse (the same key used on both chains), and the remaining 136k smaller pre-fork Ycash candidates.
 * **Wallet mode:** given a UFVK, report what share of *your* funds is recoverable. ZIP 2005 requires that *"it should be possible for wallets to identify what subset of a user's funds have been made recoverable."*
 * **Scheduled refresh:** incremental state so the dataset updates daily without re-streaming history.
-* **ZIP 2007 circuit sizing:** feed the measured category sizes and multisig shapes into the cost-benefit question the issue raises.
 
 ## Acknowledgements
 
