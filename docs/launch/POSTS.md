@@ -16,7 +16,7 @@ Numbers come from the snapshot at block 3,583,892. Re-check them against the das
 >
 > Repo (MIT): https://github.com/Jmohak2004/shorline
 > Dashboard: https://jmohak2004.github.io/shorline/
-> Demo video: ⟨link⟩
+> Demo video: https://github.com/Jmohak2004/shorline/blob/main/docs/video/shorline-explainer.mp4
 > Thread: ⟨link⟩
 >
 > Categories: Infrastructure, Education and Adoption.
