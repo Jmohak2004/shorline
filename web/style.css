@@ -305,3 +305,12 @@ main:focus { outline: none; }
 
 .foot-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 10px 0; }
 .foot-links a { color: var(--link); }
+
+/* Print: a clean one-column report of the survey ---------------------- */
+@media print {
+  :root, :root[data-theme="dark"] { color-scheme: light; --page: #fff; --surface: #fff; --surface-2: #f4f4f4; --ink: #000; --ink-2: #333; --muted: #555; }
+  body { background: #fff; color: #000; }
+  .top, .theme-btn, .nfc, .skip, #check form, .tooltip { display: none !important; }
+  section, .card { break-inside: avoid; box-shadow: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; word-break: break-all; }
+}
