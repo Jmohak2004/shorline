@@ -113,7 +113,9 @@ Requirements: Rust 1.80+ (`rustup`), network access, and about 4 GB of free RAM.
 ```bash
 git clone https://github.com/Jmohak2004/shorline
 cd shorline
-cargo test --release
+cargo test --release                 # Rust unit tests
+node --test web/test/                # dashboard address-logic tests
+python3 scripts/verify_dataset.py    # dataset invariants
 
 # Full survey: ~1 hour, ~8 GB streamed, writes the dataset the dashboard reads
 cargo run --release -- scan --out web/data
@@ -236,7 +238,11 @@ Done since the first release: [ZIP 2007 circuit sizing](docs/CIRCUIT_SIZING.md),
 
 Built on public Zcash infrastructure: [zec.rocks](https://zec.rocks) lightwalletd, the [zcashexplorer.app](https://mainnet.zcashexplorer.app) Zebra node, and the [lightwallet-protocol](https://github.com/zcash/lightwallet-protocol). The threat model and categories come from ZIP 2005 and the ZIP 2007 discussion by the Zcash protocol team.
 
-Built for the **ZcashIND *Build on Zcash*** bounty (categories: Infrastructure, Education and Adoption).
+Built for the **ZcashIND *Build on Zcash*** bounty (categories: Infrastructure, Education and Adoption). The submission summary, with a five-minute verification table, is in **[docs/SUBMISSION.md](docs/SUBMISSION.md)**.
+
+## Contributing, security and FAQ
+
+[CONTRIBUTING.md](CONTRIBUTING.md) · [SECURITY.md](SECURITY.md) (including the address checker's privacy model) · [docs/FAQ.md](docs/FAQ.md) · [CHANGELOG.md](CHANGELOG.md)
 
 ## License
 
