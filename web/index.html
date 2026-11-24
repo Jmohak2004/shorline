@@ -22,6 +22,7 @@
 </script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#">
@@ -42,7 +43,7 @@
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow">Zcash quantum exposure survey</div>
@@ -52,6 +53,7 @@
         <div class="hero-number" id="hero-number"><span class="loading">…</span></div>
         <div class="hero-caption" id="hero-caption">Loading the survey…</div>
       </div>
+      <noscript><p class="noscript">The charts and the address checker need JavaScript. The numbers are also in the <a href="https://github.com/Jmohak2004/shorline/blob/main/docs/FINDINGS.md">written findings</a> and the <a href="https://github.com/Jmohak2004/shorline/tree/main/web/data">raw dataset</a>.</p></noscript>
       <div class="tiles" id="tiles"></div>
       <div class="asof" id="asof"></div>
     </div>
