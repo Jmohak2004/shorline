@@ -302,3 +302,6 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+.foot-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 10px 0; }
+.foot-links a { color: var(--link); }
