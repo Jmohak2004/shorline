@@ -120,13 +120,21 @@ pub fn classify(script: &[u8]) -> Classified {
     {
         let mut hash = [0u8; 20];
         hash.copy_from_slice(&script[3..23]);
-        return Classified { kind: Kind::P2pkh, hash, revealed_pubkeys: vec![] };
+        return Classified {
+            kind: Kind::P2pkh,
+            hash,
+            revealed_pubkeys: vec![],
+        };
     }
     // P2SH
     if script.len() == 23 && script[0] == 0xa9 && script[1] == 0x14 && script[22] == 0x87 {
         let mut hash = [0u8; 20];
         hash.copy_from_slice(&script[2..22]);
-        return Classified { kind: Kind::P2sh, hash, revealed_pubkeys: vec![] };
+        return Classified {
+            kind: Kind::P2sh,
+            hash,
+            revealed_pubkeys: vec![],
+        };
     }
     // P2PK (compressed or uncompressed)
     if (script.len() == 35 && script[0] == 33 || script.len() == 67 && script[0] == 65)
@@ -149,9 +157,17 @@ pub fn classify(script: &[u8]) -> Classified {
     }
     // OP_RETURN
     if script.first() == Some(&0x6a) {
-        return Classified { kind: Kind::NullData, hash: [0u8; 20], revealed_pubkeys: vec![] };
+        return Classified {
+            kind: Kind::NullData,
+            hash: [0u8; 20],
+            revealed_pubkeys: vec![],
+        };
     }
-    Classified { kind: Kind::Nonstandard, hash: hash160(script), revealed_pubkeys: vec![] }
+    Classified {
+        kind: Kind::Nonstandard,
+        hash: hash160(script),
+        revealed_pubkeys: vec![],
+    }
 }
 
 /// Given a public key that has appeared on-chain in the clear, returns the
@@ -225,12 +241,21 @@ pub fn script_for(kind: Kind, hash: &[u8; 20]) -> Vec<u8> {
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum RedeemKind {
     /// `OP_m <keys…> OP_n OP_CHECKMULTISIG`
-    Multisig { m: usize, n: usize },
+    Multisig {
+        m: usize,
+        n: usize,
+    },
     /// `OP_m <keys…> OP_n OP_CHECKMULTISIGVERIFY <salt> OP_DROP OP_DEPTH OP_0 OP_EQUAL`:
     /// one key set behind many addresses, distinguished only by a short salt.
-    SaltedMultisig { m: usize, n: usize, salt_bytes: usize },
+    SaltedMultisig {
+        m: usize,
+        n: usize,
+        salt_bytes: usize,
+    },
     /// `<key> OP_CHECKSIGVERIFY <salt> OP_DROP OP_DEPTH OP_0 OP_EQUAL`
-    SaltedSingleKey { salt_bytes: usize },
+    SaltedSingleKey {
+        salt_bytes: usize,
+    },
     /// `<key> OP_CHECKSIGVERIFY OP_DROP… OP_TRUE`: data carried in the scriptSig.
     DataEnvelope,
     P2pkhWrapped,
@@ -270,7 +295,11 @@ fn salted_tail(rs: &[u8], at: usize) -> Option<(usize, usize)> {
 
 /// Public keys pushed at the start of a (salted) multisig or single-key script.
 pub fn parse_multisig_keys_any(rs: &[u8]) -> Vec<Vec<u8>> {
-    let mut at = if rs.first().and_then(|&o| small_int(o)).is_some() { 1 } else { 0 };
+    let mut at = if rs.first().and_then(|&o| small_int(o)).is_some() {
+        1
+    } else {
+        0
+    };
     let mut keys = Vec::new();
     while let Some((next, k)) = is_pubkey_push(rs, at) {
         keys.push(k.to_vec());
@@ -290,7 +319,11 @@ pub fn salt_position(rs: &[u8]) -> Option<(usize, usize)> {
                 at = next;
                 keys += 1;
             }
-            if keys > 0 && rs.get(at).and_then(|&o| small_int(o)) == Some(keys) && rs.get(at + 1) == Some(&0xaf) && m <= keys {
+            if keys > 0
+                && rs.get(at).and_then(|&o| small_int(o)) == Some(keys)
+                && rs.get(at + 1) == Some(&0xaf)
+                && m <= keys
+            {
                 return salted_tail(rs, at + 2);
             }
         }
@@ -316,7 +349,11 @@ pub fn classify_redeem_script(rs: &[u8]) -> RedeemKind {
                 at = next;
                 keys += 1;
             }
-            return RedeemKind::SaltedMultisig { m, n: keys, salt_bytes };
+            return RedeemKind::SaltedMultisig {
+                m,
+                n: keys,
+                salt_bytes,
+            };
         }
         return RedeemKind::SaltedSingleKey { salt_bytes };
     }
@@ -324,7 +361,10 @@ pub fn classify_redeem_script(rs: &[u8]) -> RedeemKind {
     if let Some((next, _)) = is_pubkey_push(rs, 0) {
         if rs.get(next) == Some(&0xad) {
             let rest = &rs[next + 1..];
-            if rest.len() >= 2 && rest[..rest.len() - 1].iter().all(|&b| b == 0x75) && rest[rest.len() - 1] == 0x51 {
+            if rest.len() >= 2
+                && rest[..rest.len() - 1].iter().all(|&b| b == 0x75)
+                && rest[rest.len() - 1] == 0x51
+            {
                 return RedeemKind::DataEnvelope;
             }
         }
@@ -367,14 +407,24 @@ mod tests {
         let c = classify(&ms);
         assert_eq!(c.kind, Kind::BareMultisig);
         assert_eq!(c.revealed_pubkeys.len(), 1);
-        assert_eq!(classify_redeem_script(&ms), RedeemKind::Multisig { m: 1, n: 1 });
+        assert_eq!(
+            classify_redeem_script(&ms),
+            RedeemKind::Multisig { m: 1, n: 1 }
+        );
     }
 
     #[test]
     fn salted_templates() {
         // The 2-of-3 salted template observed on mainnet (t3hdTwzc…).
         let rs = hex::decode("52210352d50656796dd79e3e3385c29636d849b8705c9c6d9b86a1717adc38e4a567c72102f39d0b69c3b8e06030ef9dc295cf8c848f51e398fe85414e33509afdc7f01fb321027072ba2319ead2b0b387d69d36508f57b397da8d4ac76ea64676ee8a1356dae053af04ffc378b775740087").unwrap();
-        assert_eq!(classify_redeem_script(&rs), RedeemKind::SaltedMultisig { m: 2, n: 3, salt_bytes: 4 });
+        assert_eq!(
+            classify_redeem_script(&rs),
+            RedeemKind::SaltedMultisig {
+                m: 2,
+                n: 3,
+                salt_bytes: 4
+            }
+        );
         assert_eq!(salt_position(&rs), Some((106, 4)));
         assert_eq!(&rs[106..110], &[0xff, 0xc3, 0x78, 0xb7]);
         // Its Hash160 is the t3 address it came from.
@@ -391,24 +441,37 @@ mod tests {
         let mut ss = vec![33u8];
         ss.extend_from_slice(&[3u8; 33]);
         ss.extend_from_slice(&[0xad, 0x02, 0xab, 0xcd, 0x75, 0x74, 0x00, 0x87]);
-        assert_eq!(classify_redeem_script(&ss), RedeemKind::SaltedSingleKey { salt_bytes: 2 });
+        assert_eq!(
+            classify_redeem_script(&ss),
+            RedeemKind::SaltedSingleKey { salt_bytes: 2 }
+        );
     }
 
     #[test]
     fn hash160_vector() {
         // Hash160 of the empty string.
-        assert_eq!(hex::encode(hash160(b"")), "b472a266d0bd89c13706a4132ccfb16f7c3b9fcb");
+        assert_eq!(
+            hex::encode(hash160(b"")),
+            "b472a266d0bd89c13706a4132ccfb16f7c3b9fcb"
+        );
     }
 
     #[test]
     fn both_encodings_exposed() {
         // secp256k1 generator point G, compressed.
-        let g = hex::decode("0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798").unwrap();
+        let g = hex::decode("0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798")
+            .unwrap();
         let hs = exposed_pubkey_hashes(&g);
         assert_eq!(hs.len(), 2);
         // Hash160 of compressed G (the well-known Bitcoin address 1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH).
-        assert_eq!(hex::encode(hs[0]), "751e76e8199196d454941c45d1b3a323f1433bd6");
+        assert_eq!(
+            hex::encode(hs[0]),
+            "751e76e8199196d454941c45d1b3a323f1433bd6"
+        );
         // Hash160 of uncompressed G (1EHNa6Q4Jz2uvNExL497mE43ikXhwF6kZm).
-        assert_eq!(hex::encode(hs[1]), "91b24bf9f5288532960ac687abb035127b1d28a5");
+        assert_eq!(
+            hex::encode(hs[1]),
+            "91b24bf9f5288532960ac687abb035127b1d28a5"
+        );
     }
 }

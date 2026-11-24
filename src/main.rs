@@ -12,8 +12,8 @@ mod net;
 mod pools;
 mod rawtx;
 mod report;
-mod script;
 mod salt;
+mod script;
 mod ycash;
 
 pub mod rpc {
@@ -38,7 +38,11 @@ const DEFAULT_SERVERS: [&str; 4] = [
 ];
 
 #[derive(Parser)]
-#[command(name = "shorline", version, about = "Quantum-exposure survey of the Zcash chain (ZIP 2005 / ZIP 2007)")]
+#[command(
+    name = "shorline",
+    version,
+    about = "Quantum-exposure survey of the Zcash chain (ZIP 2005 / ZIP 2007)"
+)]
 struct Cli {
     #[command(subcommand)]
     cmd: Cmd,
@@ -156,13 +160,21 @@ async fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.cmd {
         Cmd::Info { servers } => {
-            let servers = if servers.is_empty() { DEFAULT_SERVERS.iter().map(|s| s.to_string()).collect() } else { servers };
+            let servers = if servers.is_empty() {
+                DEFAULT_SERVERS.iter().map(|s| s.to_string()).collect()
+            } else {
+                servers
+            };
             for s in servers {
                 match net::connect(&s).await {
                     Ok(mut c) => match net::info(&mut c).await {
                         Ok(i) => println!(
                             "{s}: {} {} chain={} height={} protocol={}",
-                            i.vendor, i.version, i.chain_name, i.block_height, i.lightwallet_protocol_version
+                            i.vendor,
+                            i.version,
+                            i.chain_name,
+                            i.block_height,
+                            i.lightwallet_protocol_version
                         ),
                         Err(e) => println!("{s}: error {e:#}"),
                     },
@@ -172,10 +184,28 @@ async fn main() -> Result<()> {
             Ok(())
         }
         Cmd::Check { addresses, server } => check(addresses, server).await,
-        Cmd::Ycash { data, server, fork, top, concurrency } => ycash::run(&data, &server, fork, top, concurrency).await,
-        Cmd::Resurvey { data, server, concurrency } => resurvey(&data, &server, concurrency).await,
-        Cmd::SaltSweep { data, threads, max_salt_bytes } => {
-            let threads = threads.unwrap_or_else(|| std::thread::available_parallelism().map(|n| n.get()).unwrap_or(4));
+        Cmd::Ycash {
+            data,
+            server,
+            fork,
+            top,
+            concurrency,
+        } => ycash::run(&data, &server, fork, top, concurrency).await,
+        Cmd::Resurvey {
+            data,
+            server,
+            concurrency,
+        } => resurvey(&data, &server, concurrency).await,
+        Cmd::SaltSweep {
+            data,
+            threads,
+            max_salt_bytes,
+        } => {
+            let threads = threads.unwrap_or_else(|| {
+                std::thread::available_parallelism()
+                    .map(|n| n.get())
+                    .unwrap_or(4)
+            });
             tokio::task::spawn_blocking(move || salt::run(&data, threads, max_salt_bytes)).await?
         }
         Cmd::Scan {
@@ -191,7 +221,11 @@ async fn main() -> Result<()> {
             no_lookup,
             top,
         } => {
-            let servers = if servers.is_empty() { DEFAULT_SERVERS.iter().map(|s| s.to_string()).collect() } else { servers };
+            let servers = if servers.is_empty() {
+                DEFAULT_SERVERS.iter().map(|s| s.to_string()).collect()
+            } else {
+                servers
+            };
             scan(ScanArgs {
                 servers,
                 end,
@@ -230,9 +264,15 @@ async fn scan(a: ScanArgs) -> Result<()> {
         match net::connect(s).await {
             Ok(mut c) => match net::info(&mut c).await {
                 Ok(i) => {
-                    eprintln!("connected {s}: {} {} height={}", i.vendor, i.version, i.block_height);
+                    eprintln!(
+                        "connected {s}: {} {} height={}",
+                        i.vendor, i.version, i.block_height
+                    );
                     if i.chain_name != "main" {
-                        bail!("{s} serves chain {:?}; Shorline targets mainnet", i.chain_name);
+                        bail!(
+                            "{s} serves chain {:?}; Shorline targets mainnet",
+                            i.chain_name
+                        );
                     }
                     clients.push(c);
                     used.push(s.clone());
@@ -247,7 +287,10 @@ async fn scan(a: ScanArgs) -> Result<()> {
     }
     let tip = net::tip(&mut clients[0]).await?;
     let end = a.end.unwrap_or(tip).min(tip);
-    eprintln!("scanning blocks 0..={end} in chunks of {} with {} parallel downloads", a.chunk, a.concurrency);
+    eprintln!(
+        "scanning blocks 0..={end} in chunks of {} with {} parallel downloads",
+        a.chunk, a.concurrency
+    );
 
     let mut chunks = Vec::new();
     let mut s = 0u64;
@@ -259,11 +302,12 @@ async fn scan(a: ScanArgs) -> Result<()> {
     let mut engine = Engine::new(a.sample_every);
     let n_chunks = chunks.len();
     let shared = clients.clone();
-    let mut stream = futures::stream::iter(chunks.into_iter().enumerate().map(move |(i, (s, e))| {
-        let cl = shared.clone();
-        tokio::spawn(async move { net::fetch_with_retry(cl, i, s, e).await })
-    }))
-    .buffered(a.concurrency.max(1));
+    let mut stream =
+        futures::stream::iter(chunks.into_iter().enumerate().map(move |(i, (s, e))| {
+            let cl = shared.clone();
+            tokio::spawn(async move { net::fetch_with_retry(cl, i, s, e).await })
+        }))
+        .buffered(a.concurrency.max(1));
 
     let mut done = 0usize;
     let mut last_report = Instant::now();
@@ -331,8 +375,18 @@ async fn scan(a: ScanArgs) -> Result<()> {
             } else if p.height > h {
                 let lwd_tip = net::tip(&mut clients[0]).await?;
                 if lwd_tip >= p.height as u64 {
-                    eprintln!("catching up {}..={} to match the pools source", h + 1, p.height);
-                    let blocks = net::fetch_with_retry(clients.clone(), attempt, h as u64 + 1, p.height as u64).await?;
+                    eprintln!(
+                        "catching up {}..={} to match the pools source",
+                        h + 1,
+                        p.height
+                    );
+                    let blocks = net::fetch_with_retry(
+                        clients.clone(),
+                        attempt,
+                        h as u64 + 1,
+                        p.height as u64,
+                    )
+                    .await?;
                     for b in &blocks {
                         engine.process_block(b)?;
                     }
@@ -340,18 +394,27 @@ async fn scan(a: ScanArgs) -> Result<()> {
                     tokio::time::sleep(Duration::from_secs(10)).await;
                 }
             } else {
-                eprintln!("pools source at {} is behind our tip {h}; waiting", p.height);
+                eprintln!(
+                    "pools source at {} is behind our tip {h}; waiting",
+                    p.height
+                );
                 tokio::time::sleep(Duration::from_secs(15)).await;
             }
         }
         if cross.is_none() {
-            eprintln!("warning: could not align with the pools source; writing without cross-check");
+            eprintln!(
+                "warning: could not align with the pools source; writing without cross-check"
+            );
         }
     }
     engine.push_sample();
 
     // ---- P2SH redeem-script survey (ZIP 2007 open question) -----------------
-    let p2sh = if a.p2sh_survey { Some(p2sh_survey(&engine, &clients).await) } else { None };
+    let p2sh = if a.p2sh_survey {
+        Some(p2sh_survey(&engine, &clients).await)
+    } else {
+        None
+    };
 
     let meta = report::Meta {
         servers: used,
@@ -360,8 +423,19 @@ async fn scan(a: ScanArgs) -> Result<()> {
         top_n: a.top,
         write_lookup: a.lookup,
     };
-    report::write_all(&a.out, &engine, pools_snapshot.as_ref(), cross.as_ref(), p2sh.as_ref(), &meta)?;
-    eprintln!("wrote dataset to {} in {:.0}s", a.out.display(), meta.seconds);
+    report::write_all(
+        &a.out,
+        &engine,
+        pools_snapshot.as_ref(),
+        cross.as_ref(),
+        p2sh.as_ref(),
+        &meta,
+    )?;
+    eprintln!(
+        "wrote dataset to {} in {:.0}s",
+        a.out.display(),
+        meta.seconds
+    );
     Ok(())
 }
 
@@ -370,48 +444,65 @@ async fn p2sh_survey(engine: &Engine, clients: &[net::Client]) -> P2shSurvey {
     for (id, kind, hash, st) in engine.iter_ids() {
         if kind == Kind::P2sh && st.balance > 0 && st.revealed != NEVER {
             if let Some(r) = engine.p2sh_first_spend.get(&id) {
-                targets.push((script::encode_taddr(kind, &hash).unwrap(), st.balance, r.clone()));
+                targets.push((
+                    script::encode_taddr(kind, &hash).unwrap(),
+                    st.balance,
+                    r.clone(),
+                ));
             }
         }
     }
-    eprintln!("P2SH survey: fetching first-spend transactions for {} funded, revealed t3 addresses", targets.len());
+    eprintln!(
+        "P2SH survey: fetching first-spend transactions for {} funded, revealed t3 addresses",
+        targets.len()
+    );
     let n = targets.len();
-    let results: Vec<Option<P2shSurveyEntry>> = futures::stream::iter(targets.into_iter().enumerate().map(|(i, (addr, zat, r))| {
-        let mut c = clients[i % clients.len()].clone();
-        async move {
-            for _ in 0..3 {
-                match net::get_transaction(&mut c, &r.txid).await {
-                    Ok(raw) => {
-                        let Ok((_, ins)) = rawtx::parse_inputs(&raw.data) else { return None };
-                        let input = ins.get(r.vin_index as usize)?;
-                        if input.prevout_txid != r.prevout_txid || input.prevout_index != r.prevout_index {
-                            return None;
+    let results: Vec<Option<P2shSurveyEntry>> =
+        futures::stream::iter(targets.into_iter().enumerate().map(|(i, (addr, zat, r))| {
+            let mut c = clients[i % clients.len()].clone();
+            async move {
+                for _ in 0..3 {
+                    match net::get_transaction(&mut c, &r.txid).await {
+                        Ok(raw) => {
+                            let Ok((_, ins)) = rawtx::parse_inputs(&raw.data) else {
+                                return None;
+                            };
+                            let input = ins.get(r.vin_index as usize)?;
+                            if input.prevout_txid != r.prevout_txid
+                                || input.prevout_index != r.prevout_index
+                            {
+                                return None;
+                            }
+                            let pushes = rawtx::pushes(&input.script_sig)?;
+                            let redeem = pushes.last()?;
+                            return Some(P2shSurveyEntry {
+                                address: addr,
+                                zat,
+                                redeem: classify_redeem_script(redeem),
+                                redeem_script: hex::encode(redeem),
+                                first_spend_txid: report::display_txid(&r.txid),
+                                first_spend_height: r.height,
+                            });
                         }
-                        let pushes = rawtx::pushes(&input.script_sig)?;
-                        let redeem = pushes.last()?;
-                        return Some(P2shSurveyEntry {
-                            address: addr,
-                            zat,
-                            redeem: classify_redeem_script(redeem),
-                            redeem_script: hex::encode(redeem),
-                            first_spend_txid: report::display_txid(&r.txid),
-                            first_spend_height: r.height,
-                        });
+                        Err(_) => tokio::time::sleep(Duration::from_millis(500)).await,
                     }
-                    Err(_) => tokio::time::sleep(Duration::from_millis(500)).await,
                 }
+                None
             }
-            None
-        }
-    }))
-    .buffer_unordered(8)
-    .collect()
-    .await;
+        }))
+        .buffer_unordered(8)
+        .collect()
+        .await;
     let mut entries: Vec<P2shSurveyEntry> = results.into_iter().flatten().collect();
     entries.sort_by(|a, b| b.zat.cmp(&a.zat));
     let classified = entries.len();
     eprintln!("P2SH survey: classified {classified} of {n}");
-    P2shSurvey { addresses_with_balance: n, classified, failed: n - classified, entries }
+    P2shSurvey {
+        addresses_with_balance: n,
+        classified,
+        failed: n - classified,
+        entries,
+    }
 }
 
 /// Live classification of t-addresses: fetches every block containing a
@@ -434,7 +525,11 @@ async fn check(addresses: Vec<String>, server: String) -> Result<()> {
 
         // Current balance: one call.
         let utxos = c
-            .get_address_utxos(rpc::GetAddressUtxosArg { addresses: vec![addr.clone()], start_height: 0, max_entries: 0 })
+            .get_address_utxos(rpc::GetAddressUtxosArg {
+                addresses: vec![addr.clone()],
+                start_height: 0,
+                max_entries: 0,
+            })
             .await?
             .into_inner()
             .address_utxos;
@@ -460,8 +555,14 @@ async fn check(addresses: Vec<String>, server: String) -> Result<()> {
             let filter = rpc::TransparentAddressBlockFilter {
                 address: addr.clone(),
                 range: Some(rpc::BlockRange {
-                    start: Some(rpc::BlockId { height: w, hash: vec![] }),
-                    end: Some(rpc::BlockId { height: wend, hash: vec![] }),
+                    start: Some(rpc::BlockId {
+                        height: w,
+                        hash: vec![],
+                    }),
+                    end: Some(rpc::BlockId {
+                        height: wend,
+                        hash: vec![],
+                    }),
                     pool_types: vec![],
                 }),
             };
@@ -503,10 +604,19 @@ async fn check(addresses: Vec<String>, server: String) -> Result<()> {
             }
             tx_heights_seen += heights.len();
             for &h in &heights {
-                let b = c.get_block(rpc::BlockId { height: h, hash: vec![] }).await?.into_inner();
+                let b = c
+                    .get_block(rpc::BlockId {
+                        height: h,
+                        hash: vec![],
+                    })
+                    .await?
+                    .into_inner();
                 for tx in &b.vtx {
                     for vin in &tx.vin {
-                        if outs.remove(&(vin.prevout_txid.clone(), vin.prevout_index)).is_some() {
+                        if outs
+                            .remove(&(vin.prevout_txid.clone(), vin.prevout_index))
+                            .is_some()
+                        {
                             first_spend = Some((h, tx.txid.clone()));
                             break 'windows;
                         }
@@ -519,18 +629,32 @@ async fn check(addresses: Vec<String>, server: String) -> Result<()> {
                 }
             }
         }
-        let kind_s = if kind == Kind::P2pkh { "P2PKH (t1)" } else { "P2SH (t3)" };
+        let kind_s = if kind == Kind::P2pkh {
+            "P2PKH (t1)"
+        } else {
+            "P2SH (t3)"
+        };
         println!("{addr}");
         println!("  type:     {kind_s}");
         println!("  balance:  {} ZEC in {} UTXOs", zec(balance), utxos.len());
         if first_spend.is_none() {
-            println!("  history:  {tx_heights_seen} blocks with activity, no spend from this address");
+            println!(
+                "  history:  {tx_heights_seen} blocks with activity, no spend from this address"
+            );
         }
         match first_spend {
             Some((h, by)) => {
                 let mut id = [0u8; 32];
                 id.copy_from_slice(&by[..32]);
-                println!("  status:   EXPOSED: {} revealed at height {h} by tx {}", if kind == Kind::P2pkh { "public key" } else { "redeem script" }, report::display_txid(&id));
+                println!(
+                    "  status:   EXPOSED: {} revealed at height {h} by tx {}",
+                    if kind == Kind::P2pkh {
+                        "public key"
+                    } else {
+                        "redeem script"
+                    },
+                    report::display_txid(&id)
+                );
                 if balance > 0 {
                     println!("  risk:     a discrete-log-breaking (quantum) adversary can derive the key and forge spends of these funds.");
                     println!("  action:   move funds to a fresh Ironwood shielded address (ZIP 2005 recoverable) and never reuse this address.");
@@ -562,46 +686,70 @@ async fn resurvey(data: &std::path::Path, server: &str, concurrency: usize) -> R
     let client = net::connect(server).await?;
     let n = old.entries.len();
     eprintln!("resurvey: re-fetching {n} first-spend transactions");
-    let results: Vec<Option<P2shSurveyEntry>> = futures::stream::iter(old.entries.into_iter().map(|e| {
-        let mut c = client.clone();
-        async move {
-            let (_, hash) = script::decode_taddr(&e.address)?;
-            let mut txid: [u8; 32] = hex::decode(&e.first_spend_txid).ok()?.try_into().ok()?;
-            txid.reverse();
-            for _ in 0..4 {
-                match net::get_transaction(&mut c, &txid).await {
-                    Ok(raw) => {
-                        let (_, ins) = rawtx::parse_inputs(&raw.data).ok()?;
-                        for i in ins {
-                            let Some(p) = rawtx::pushes(&i.script_sig) else { continue };
-                            let Some(rs) = p.last() else { continue };
-                            if script::hash160(rs) == hash {
-                                return Some(P2shSurveyEntry { redeem: classify_redeem_script(rs), redeem_script: hex::encode(rs), ..e });
+    let results: Vec<Option<P2shSurveyEntry>> =
+        futures::stream::iter(old.entries.into_iter().map(|e| {
+            let mut c = client.clone();
+            async move {
+                let (_, hash) = script::decode_taddr(&e.address)?;
+                let mut txid: [u8; 32] = hex::decode(&e.first_spend_txid).ok()?.try_into().ok()?;
+                txid.reverse();
+                for _ in 0..4 {
+                    match net::get_transaction(&mut c, &txid).await {
+                        Ok(raw) => {
+                            let (_, ins) = rawtx::parse_inputs(&raw.data).ok()?;
+                            for i in ins {
+                                let Some(p) = rawtx::pushes(&i.script_sig) else {
+                                    continue;
+                                };
+                                let Some(rs) = p.last() else { continue };
+                                if script::hash160(rs) == hash {
+                                    return Some(P2shSurveyEntry {
+                                        redeem: classify_redeem_script(rs),
+                                        redeem_script: hex::encode(rs),
+                                        ..e
+                                    });
+                                }
                             }
+                            return None;
                         }
-                        return None;
+                        Err(_) => tokio::time::sleep(Duration::from_millis(700)).await,
                     }
-                    Err(_) => tokio::time::sleep(Duration::from_millis(700)).await,
                 }
+                None
             }
-            None
-        }
-    }))
-    .buffer_unordered(concurrency.max(1))
-    .collect()
-    .await;
+        }))
+        .buffer_unordered(concurrency.max(1))
+        .collect()
+        .await;
     let mut entries: Vec<P2shSurveyEntry> = results.into_iter().flatten().collect();
     entries.sort_by(|a, b| b.zat.cmp(&a.zat));
     let classified = entries.len();
-    let survey = P2shSurvey { addresses_with_balance: old.addresses_with_balance, classified, failed: old.addresses_with_balance - classified, entries };
+    let survey = P2shSurvey {
+        addresses_with_balance: old.addresses_with_balance,
+        classified,
+        failed: old.addresses_with_balance - classified,
+        entries,
+    };
     std::fs::write(&path, serde_json::to_string_pretty(&survey)?)?;
     let sp = data.join("summary.json");
     let mut summary: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&sp)?)?;
     summary["p2sh_survey"] = report::p2sh_summary(&survey);
     std::fs::write(&sp, serde_json::to_string_pretty(&summary)?)?;
-    eprintln!("resurvey: classified {classified} of {}", survey.addresses_with_balance);
-    for t in summary["p2sh_survey"]["by_redeem_type"].as_array().into_iter().flatten() {
-        eprintln!("  {:<28} {:>6} addresses {:>16} ZEC", t["type"].as_str().unwrap_or(""), t["addresses"], zec(t["zat"].as_u64().unwrap_or(0)));
+    eprintln!(
+        "resurvey: classified {classified} of {}",
+        survey.addresses_with_balance
+    );
+    for t in summary["p2sh_survey"]["by_redeem_type"]
+        .as_array()
+        .into_iter()
+        .flatten()
+    {
+        eprintln!(
+            "  {:<28} {:>6} addresses {:>16} ZEC",
+            t["type"].as_str().unwrap_or(""),
+            t["addresses"],
+            zec(t["zat"].as_u64().unwrap_or(0))
+        );
     }
     Ok(())
 }

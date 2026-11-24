@@ -60,7 +60,10 @@ impl Template {
         let first = salt_off / 64;
         let mut mid = SHA256_IV;
         for b in 0..first {
-            sha2::compress256(&mut mid, &[*GenericArray::from_slice(&padded[b * 64..(b + 1) * 64])]);
+            sha2::compress256(
+                &mut mid,
+                &[*GenericArray::from_slice(&padded[b * 64..(b + 1) * 64])],
+            );
         }
         Template {
             script: script.to_vec(),
@@ -128,7 +131,11 @@ fn load_p2sh(data: &Path) -> Result<FxHashMap<[u8; 20], (String, u64, u8)>> {
     let mut out = FxHashMap::default();
     for entry in std::fs::read_dir(&dir).context("reading lookup/ (run `shorline scan` first)")? {
         let path = entry?.path();
-        let name = path.file_stem().and_then(|s| s.to_str()).unwrap_or_default().to_string();
+        let name = path
+            .file_stem()
+            .and_then(|s| s.to_str())
+            .unwrap_or_default()
+            .to_string();
         if !name.starts_with("t3_") {
             continue;
         }
@@ -148,20 +155,29 @@ fn load_p2sh(data: &Path) -> Result<FxHashMap<[u8; 20], (String, u64, u8)>> {
 }
 
 pub fn run(data: &Path, threads: usize, max_salt_bytes: usize) -> Result<()> {
-    let survey: P2shSurvey = serde_json::from_str(&std::fs::read_to_string(data.join("p2sh_survey.json"))?)?;
+    let survey: P2shSurvey =
+        serde_json::from_str(&std::fs::read_to_string(data.join("p2sh_survey.json"))?)?;
     let p2sh = load_p2sh(data)?;
-    let unseen: Vec<(&[u8; 20], &(String, u64, u8))> = p2sh.iter().filter(|(_, v)| v.2 == 2).collect();
+    let unseen: Vec<(&[u8; 20], &(String, u64, u8))> =
+        p2sh.iter().filter(|(_, v)| v.2 == 2).collect();
     let unseen_zat: u64 = unseen.iter().map(|(_, v)| v.1).sum();
-    eprintln!("salt sweep: {} funded unseen P2SH addresses ({} ZEC) as targets", unseen.len(), unseen_zat / 100_000_000);
+    eprintln!(
+        "salt sweep: {} funded unseen P2SH addresses ({} ZEC) as targets",
+        unseen.len(),
+        unseen_zat / 100_000_000
+    );
 
     // Group revealed salted scripts into templates (salt bytes zeroed).
-    let mut groups: FxHashMap<Vec<u8>, (RedeemKind, usize, usize, Vec<(String, u64)>)> = FxHashMap::default();
+    let mut groups: FxHashMap<Vec<u8>, (RedeemKind, usize, usize, Vec<(String, u64)>)> =
+        FxHashMap::default();
     for e in &survey.entries {
         if e.redeem_script.is_empty() {
             continue;
         }
         let rs = hex::decode(&e.redeem_script)?;
-        let Some((off, len)) = script::salt_position(&rs) else { continue };
+        let Some((off, len)) = script::salt_position(&rs) else {
+            continue;
+        };
         if len > max_salt_bytes {
             eprintln!("  skipping template with {len}-byte salt (> {max_salt_bytes})");
             continue;
@@ -191,7 +207,12 @@ pub fn run(data: &Path, threads: usize, max_salt_bytes: usize) -> Result<()> {
         let next = AtomicU64::new(0);
         let found: Mutex<Vec<([u8; 20], Vec<u8>)>> = Mutex::new(Vec::new());
         let started = Instant::now();
-        eprintln!("  template {} ({} revealed addresses): searching {} salts on {threads} threads", redeem.label(), revealed.len(), total);
+        eprintln!(
+            "  template {} ({} revealed addresses): searching {} salts on {threads} threads",
+            redeem.label(),
+            revealed.len(),
+            total
+        );
         std::thread::scope(|sc| {
             for _ in 0..threads {
                 sc.spawn(|| {
@@ -227,7 +248,11 @@ pub fn run(data: &Path, threads: usize, max_salt_bytes: usize) -> Result<()> {
             if revealed_set.contains(addr.as_str()) || *cat == 3 {
                 rediscovered += 1;
             } else {
-                matches.push(Match { address: addr.clone(), zat: *zat, salt: hex::encode(salt) });
+                matches.push(Match {
+                    address: addr.clone(),
+                    zat: *zat,
+                    salt: hex::encode(salt),
+                });
             }
         }
         matches.sort_by(|a, b| b.zat.cmp(&a.zat));
@@ -264,7 +289,10 @@ pub fn run(data: &Path, threads: usize, max_salt_bytes: usize) -> Result<()> {
         matched_zat: reports.iter().map(|r| r.unseen_matched_zat).sum(),
         templates: reports,
     };
-    std::fs::write(data.join("salted_exposure.json"), serde_json::to_string_pretty(&report)?)?;
+    std::fs::write(
+        data.join("salted_exposure.json"),
+        serde_json::to_string_pretty(&report)?,
+    )?;
     eprintln!(
         "wrote {}: {} unseen P2SH addresses ({} ZEC) belong to salted families whose keys are already public",
         data.join("salted_exposure.json").display(),
@@ -286,7 +314,10 @@ mod tests {
         key[off..off + len].iter_mut().for_each(|b| *b = 0);
         let t = Template::new(&key, off, len);
         let mut buf = t.tail.clone();
-        assert_eq!(t.hash160_with(&mut buf, &[0xff, 0xc3, 0x78, 0xb7]), script::hash160(&rs));
+        assert_eq!(
+            t.hash160_with(&mut buf, &[0xff, 0xc3, 0x78, 0xb7]),
+            script::hash160(&rs)
+        );
         let (_, h) = script::decode_taddr("t3hdTwzcVVGEqDdNKJTBfWvWyaFYNJv7KkA").unwrap();
         assert_eq!(t.hash160_with(&mut buf, &[0xff, 0xc3, 0x78, 0xb7]), h);
     }

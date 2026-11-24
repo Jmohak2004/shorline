@@ -66,7 +66,11 @@ pub struct YcashReport {
 }
 
 pub fn ycash_address(kind: Kind, hash: &[u8; 20]) -> String {
-    let prefix = if kind == Kind::P2pkh { S1_PREFIX } else { S3_PREFIX };
+    let prefix = if kind == Kind::P2pkh {
+        S1_PREFIX
+    } else {
+        S3_PREFIX
+    };
     let mut p = prefix.to_vec();
     p.extend_from_slice(hash);
     bs58::encode(p).with_check().into_string()
@@ -75,13 +79,20 @@ pub fn ycash_address(kind: Kind, hash: &[u8; 20]) -> String {
 /// Loads funded addresses from the lookup shards written by `scan`.
 pub fn load_candidates(data: &Path, fork: u64) -> Result<(u64, Vec<Candidate>)> {
     let dir = data.join("lookup");
-    let index: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(dir.join("index.json")).context("reading lookup/index.json (run `shorline scan` first)")?)?;
+    let index: serde_json::Value = serde_json::from_str(
+        &std::fs::read_to_string(dir.join("index.json"))
+            .context("reading lookup/index.json (run `shorline scan` first)")?,
+    )?;
     let height = index["height"].as_u64().unwrap_or(0);
     let alphabet: Vec<char> = BASE58.chars().collect();
     let mut out = Vec::new();
     for entry in std::fs::read_dir(&dir)? {
         let path = entry?.path();
-        let name = path.file_stem().and_then(|s| s.to_str()).unwrap_or_default().to_string();
+        let name = path
+            .file_stem()
+            .and_then(|s| s.to_str())
+            .unwrap_or_default()
+            .to_string();
         if name == "index" || !name.contains('_') {
             continue;
         }
@@ -97,7 +108,14 @@ pub fn load_candidates(data: &Path, fork: u64) -> Result<(u64, Vec<Candidate>)> 
             if (cat == 0 || cat == 2) && first < fork && zat > 0 {
                 let address = format!("{head}{}", row[0].as_str().unwrap_or_default());
                 if let Some((kind, hash)) = script::decode_taddr(&address) {
-                    out.push(Candidate { address, kind, hash, zat, category: cat, first_seen: first as u32 });
+                    out.push(Candidate {
+                        address,
+                        kind,
+                        hash,
+                        zat,
+                        category: cat,
+                        first_seen: first as u32,
+                    });
                 }
             }
         }
@@ -113,24 +131,41 @@ fn txid_v4(raw: &[u8]) -> String {
 }
 
 /// Returns the first post-fork Ycash spend that reveals the candidate's key.
-async fn find_reveal(c: &mut net::Client, cand: &Candidate, fork: u64, tip: u64) -> Result<Option<(u64, String)>> {
+async fn find_reveal(
+    c: &mut net::Client,
+    cand: &Candidate,
+    fork: u64,
+    tip: u64,
+) -> Result<Option<(u64, String)>> {
     let filter = rpc::TransparentAddressBlockFilter {
         address: ycash_address(cand.kind, &cand.hash),
         range: Some(rpc::BlockRange {
-            start: Some(rpc::BlockId { height: fork, hash: vec![] }),
-            end: Some(rpc::BlockId { height: tip, hash: vec![] }),
+            start: Some(rpc::BlockId {
+                height: fork,
+                hash: vec![],
+            }),
+            end: Some(rpc::BlockId {
+                height: tip,
+                hash: vec![],
+            }),
             pool_types: vec![],
         }),
     };
     let mut stream = c.get_taddress_txids(filter).await?.into_inner();
     let mut best: Option<(u64, String)> = None;
     while let Some(t) = stream.message().await? {
-        let Ok((_, ins)) = rawtx::parse_inputs(&t.data) else { continue };
+        let Ok((_, ins)) = rawtx::parse_inputs(&t.data) else {
+            continue;
+        };
         for i in ins {
-            let Some(pushes) = rawtx::pushes(&i.script_sig) else { continue };
+            let Some(pushes) = rawtx::pushes(&i.script_sig) else {
+                continue;
+            };
             let Some(last) = pushes.last() else { continue };
             let hit = match cand.kind {
-                Kind::P2pkh => (last.len() == 33 || last.len() == 65) && script::hash160(last) == cand.hash,
+                Kind::P2pkh => {
+                    (last.len() == 33 || last.len() == 65) && script::hash160(last) == cand.hash
+                }
                 _ => script::hash160(last) == cand.hash,
             };
             if hit && best.as_ref().map_or(true, |(h, _)| t.height < *h) {
@@ -141,10 +176,20 @@ async fn find_reveal(c: &mut net::Client, cand: &Candidate, fork: u64, tip: u64)
     Ok(best)
 }
 
-pub async fn run(data: &Path, server: &str, fork: u64, top: usize, concurrency: usize) -> Result<()> {
+pub async fn run(
+    data: &Path,
+    server: &str,
+    fork: u64,
+    top: usize,
+    concurrency: usize,
+) -> Result<()> {
     let (snap, all) = load_candidates(data, fork)?;
     let candidates_zat: u64 = all.iter().map(|c| c.zat).sum();
-    let chosen: Vec<Candidate> = if top == 0 { all.clone() } else { all.iter().take(top).cloned().collect() };
+    let chosen: Vec<Candidate> = if top == 0 {
+        all.clone()
+    } else {
+        all.iter().take(top).cloned().collect()
+    };
     let checked_zat: u64 = chosen.iter().map(|c| c.zat).sum();
     eprintln!(
         "Ycash cross-check: {} candidate addresses funded before {fork} ({} ZEC); checking {} ({} ZEC)",
@@ -181,7 +226,11 @@ pub async fn run(data: &Path, server: &str, fork: u64, top: usize, concurrency: 
                 ycash_address: ycash_address(cand.kind, &cand.hash),
                 address: cand.address,
                 zat: cand.zat,
-                category: if cand.category == 0 { "p2pkh_hidden" } else { "p2sh_unseen" },
+                category: if cand.category == 0 {
+                    "p2pkh_hidden"
+                } else {
+                    "p2sh_unseen"
+                },
                 ycash_height: h,
                 ycash_txid: txid,
             }),
@@ -213,7 +262,10 @@ pub async fn run(data: &Path, server: &str, fork: u64, top: usize, concurrency: 
         revealed_zat: revealed.iter().map(|r| r.zat).sum(),
         revealed,
     };
-    std::fs::write(data.join("ycash_exposure.json"), serde_json::to_string_pretty(&report)?)?;
+    std::fs::write(
+        data.join("ycash_exposure.json"),
+        serde_json::to_string_pretty(&report)?,
+    )?;
     eprintln!(
         "wrote {}: {} addresses / {} ZEC that look hash-protected on Zcash had their keys revealed on Ycash",
         data.join("ycash_exposure.json").display(),
@@ -234,6 +286,9 @@ mod tests {
         assert!(ycash_address(Kind::P2sh, &[0xff; 20]).starts_with("s3"));
         // A real pair: the same key on both chains.
         let (k, hash) = script::decode_taddr("t1cesdj5WMe8K6tYKobNp1qufxWeMNSRJXt").unwrap();
-        assert_eq!(ycash_address(k, &hash), "s1fz1r6A27fQ9LUTrHBQvBniPKsYX2e5dx4");
+        assert_eq!(
+            ycash_address(k, &hash),
+            "s1fz1r6A27fQ9LUTrHBQvBniPKsYX2e5dx4"
+        );
     }
 }

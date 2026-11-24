@@ -101,7 +101,10 @@ fn reason_str(r: u8) -> Option<&'static str> {
 }
 
 fn is_exposed(c: Cat) -> bool {
-    matches!(c, Cat::P2pkhExposed | Cat::P2shSeen | Cat::P2pk | Cat::BareMultisig)
+    matches!(
+        c,
+        Cat::P2pkhExposed | Cat::P2shSeen | Cat::P2pk | Cat::BareMultisig
+    )
 }
 
 pub fn write_all(
@@ -135,7 +138,8 @@ pub fn write_all(
         let c = a.cat();
         addr_counts[c as usize] += 1;
         per_cat[c as usize].push((a.balance, kind, hash, a));
-        let age_years = (tip_time.saturating_sub(time_of(a.last_seen))) as f64 / (365.25 * 86_400.0);
+        let age_years =
+            (tip_time.saturating_sub(time_of(a.last_seen))) as f64 / (365.25 * 86_400.0);
         let bucket = match age_years {
             y if y < 1.0 => buckets[0],
             y if y < 2.0 => buckets[1],
@@ -144,7 +148,11 @@ pub fn write_all(
             _ => buckets[4],
         };
         if is_exposed(c) {
-            let rh = if a.revealed == NEVER { a.first_seen } else { a.revealed };
+            let rh = if a.revealed == NEVER {
+                a.first_seen
+            } else {
+                a.revealed
+            };
             *exposure_by_year.entry(year_of(time_of(rh))).or_default() += a.balance;
             dormancy.get_mut(bucket).unwrap()[0] += a.balance;
             reveal_reason_zat[a.reveal_reason.min(2) as usize] += a.balance;
@@ -176,7 +184,12 @@ pub fn write_all(
 
     // Flow into already-exposed addresses over the last 30 days.
     let cutoff = tip_time.saturating_sub(30 * 86_400);
-    let base = e.samples.iter().rev().find(|s| s.time <= cutoff).map(|s| (s.height, s.sent_to_exposed));
+    let base = e
+        .samples
+        .iter()
+        .rev()
+        .find(|s| s.time <= cutoff)
+        .map(|s| (s.height, s.sent_to_exposed));
     let sent_30d = base.map(|(h, v)| json!({"since_height": h, "zat": e.sent_to_exposed - v}));
 
     let categories: Vec<Value> = (0..N_CATS)
@@ -236,7 +249,10 @@ pub fn write_all(
         },
         "p2sh_survey": p2sh.map(p2sh_summary),
     });
-    fs::write(out.join("summary.json"), serde_json::to_string_pretty(&summary)?)?;
+    fs::write(
+        out.join("summary.json"),
+        serde_json::to_string_pretty(&summary)?,
+    )?;
 
     // ---- time series --------------------------------------------------------
     let rows: Vec<Value> = e
@@ -282,10 +298,16 @@ pub fn write_all(
             .collect();
         top.insert(CAT_IDS[i].to_string(), Value::Array(items));
     }
-    fs::write(out.join("top.json"), serde_json::to_string_pretty(&Value::Object(top))?)?;
+    fs::write(
+        out.join("top.json"),
+        serde_json::to_string_pretty(&Value::Object(top))?,
+    )?;
 
     if let Some(s) = p2sh {
-        fs::write(out.join("p2sh_survey.json"), serde_json::to_string_pretty(s)?)?;
+        fs::write(
+            out.join("p2sh_survey.json"),
+            serde_json::to_string_pretty(s)?,
+        )?;
     }
 
     if meta.write_lookup {
@@ -326,7 +348,11 @@ fn write_lookup(out: &Path, e: &Engine, height: u32) -> Result<()> {
             &addr[4..],
             a.cat() as usize,
             a.balance,
-            if a.revealed == NEVER { -1i64 } else { a.revealed as i64 },
+            if a.revealed == NEVER {
+                -1i64
+            } else {
+                a.revealed as i64
+            },
             a.first_seen,
             a.last_seen,
         ]));
@@ -334,7 +360,10 @@ fn write_lookup(out: &Path, e: &Engine, height: u32) -> Result<()> {
     }
     let count = shards.len();
     for (s, entries) in shards {
-        fs::write(dir.join(format!("{s}.json")), serde_json::to_string(&json!({"h": height, "e": entries}))?)?;
+        fs::write(
+            dir.join(format!("{s}.json")),
+            serde_json::to_string(&json!({"h": height, "e": entries}))?,
+        )?;
     }
     fs::write(
         dir.join("index.json"),

@@ -57,7 +57,10 @@ pub fn parse_inputs(raw: &[u8]) -> Result<(u32, Vec<TxIn>)> {
             v => bail!("unsupported transaction version {v}"),
         }
     } else {
-        ensure!(version == 1 || version == 2, "unsupported pre-Overwinter version {version}");
+        ensure!(
+            version == 1 || version == 2,
+            "unsupported pre-Overwinter version {version}"
+        );
     }
     let n = r.compact_size()?;
     ensure!(n < 100_000, "implausible input count {n}");
@@ -69,7 +72,11 @@ pub fn parse_inputs(raw: &[u8]) -> Result<(u32, Vec<TxIn>)> {
         let len = r.compact_size()? as usize;
         let script_sig = r.take(len)?.to_vec();
         r.u32()?; // nSequence
-        ins.push(TxIn { prevout_txid, prevout_index, script_sig });
+        ins.push(TxIn {
+            prevout_txid,
+            prevout_index,
+            script_sig,
+        });
     }
     Ok((version, ins))
 }
@@ -141,7 +148,10 @@ mod tests {
     #[test]
     fn splits_pushes() {
         let s = [0x00, 0x02, 0xaa, 0xbb, 0x4c, 0x01, 0xcc];
-        assert_eq!(pushes(&s).unwrap(), vec![vec![], vec![0xaa, 0xbb], vec![0xcc]]);
+        assert_eq!(
+            pushes(&s).unwrap(),
+            vec![vec![], vec![0xaa, 0xbb], vec![0xcc]]
+        );
         assert!(pushes(&[0xac]).is_none());
     }
 }

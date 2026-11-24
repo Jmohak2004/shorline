@@ -25,7 +25,10 @@ impl Pools {
 
 pub fn fetch(url: &str) -> Result<Pools> {
     let v: serde_json::Value = ureq::get(url)
-        .set("User-Agent", concat!("shorline/", env!("CARGO_PKG_VERSION")))
+        .set(
+            "User-Agent",
+            concat!("shorline/", env!("CARGO_PKG_VERSION")),
+        )
         .timeout(std::time::Duration::from_secs(30))
         .call()
         .with_context(|| format!("GET {url}"))?
@@ -34,7 +37,9 @@ pub fn fetch(url: &str) -> Result<Pools> {
     let mut zat = BTreeMap::new();
     for p in v["valuePools"].as_array().context("missing `valuePools`")? {
         let id = p["id"].as_str().context("pool without id")?.to_string();
-        let z = p["chainValueZat"].as_u64().context("pool without chainValueZat")?;
+        let z = p["chainValueZat"]
+            .as_u64()
+            .context("pool without chainValueZat")?;
         zat.insert(id, z);
     }
     Ok(Pools {

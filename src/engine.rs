@@ -211,7 +211,9 @@ impl Engine {
     }
 
     pub fn lookup(&self, kind: Kind, hash: &[u8; 20]) -> Option<&AddrState> {
-        self.index.get(&addrkey(kind, hash)).map(|&id| &self.addrs[id as usize])
+        self.index
+            .get(&addrkey(kind, hash))
+            .map(|&id| &self.addrs[id as usize])
     }
 
     fn get_or_insert(&mut self, kind: Kind, hash: &[u8; 20], h: u32) -> u32 {
@@ -231,7 +233,11 @@ impl Engine {
             utxos: 0,
             spends: 0,
             kind: kind as u8,
-            reveal_reason: if always_public { RevealReason::PubkeyInOutput as u8 } else { 0 },
+            reveal_reason: if always_public {
+                RevealReason::PubkeyInOutput as u8
+            } else {
+                0
+            },
         });
         self.index.insert(k, id);
         id
@@ -335,7 +341,8 @@ impl Engine {
                 self.cat_zat[cat] += out.value;
                 self.cat_utxos[cat] += 1;
                 if c.kind != Kind::NullData {
-                    self.utxos.insert(outkey(&tx.txid, i as u32), (id, out.value));
+                    self.utxos
+                        .insert(outkey(&tx.txid, i as u32), (id, out.value));
                 }
                 for pk in &c.revealed_pubkeys {
                     for ph in script::exposed_pubkey_hashes(pk) {
@@ -379,7 +386,11 @@ mod tests {
         CompactBlock {
             height: h,
             hash: vec![h as u8; 32],
-            prev_hash: if h == 0 { vec![] } else { vec![(h - 1) as u8; 32] },
+            prev_hash: if h == 0 {
+                vec![]
+            } else {
+                vec![(h - 1) as u8; 32]
+            },
             vtx: txs,
             ..Default::default()
         }
@@ -390,9 +401,18 @@ mod tests {
             txid: vec![id; 32],
             vin: vin
                 .into_iter()
-                .map(|(t, i)| CompactTxIn { prevout_txid: vec![t; 32], prevout_index: i })
+                .map(|(t, i)| CompactTxIn {
+                    prevout_txid: vec![t; 32],
+                    prevout_index: i,
+                })
                 .collect(),
-            vout: vout.into_iter().map(|(s, v)| TxOut { script_pub_key: s, value: v }).collect(),
+            vout: vout
+                .into_iter()
+                .map(|(s, v)| TxOut {
+                    script_pub_key: s,
+                    value: v,
+                })
+                .collect(),
             ..Default::default()
         }
     }
@@ -405,14 +425,23 @@ mod tests {
         let b = script_for(Kind::P2pkh, &bob);
         let mut e = Engine::new(0);
         // Block 0: alice receives two outputs (hidden).
-        e.process_block(&block(0, vec![tx(10, vec![], vec![(a.clone(), 100), (a.clone(), 50)])])).unwrap();
+        e.process_block(&block(
+            0,
+            vec![tx(10, vec![], vec![(a.clone(), 100), (a.clone(), 50)])],
+        ))
+        .unwrap();
         assert_eq!(e.cat_zat[Cat::P2pkhHidden as usize], 150);
         // Block 1: alice spends one output to bob; her remaining 50 is now exposed.
-        e.process_block(&block(1, vec![tx(11, vec![(10, 0)], vec![(b.clone(), 100)])])).unwrap();
+        e.process_block(&block(
+            1,
+            vec![tx(11, vec![(10, 0)], vec![(b.clone(), 100)])],
+        ))
+        .unwrap();
         assert_eq!(e.cat_zat[Cat::P2pkhExposed as usize], 50);
         assert_eq!(e.cat_zat[Cat::P2pkhHidden as usize], 100);
         // Block 2: someone sends alice 7 more: lands directly in exposed.
-        e.process_block(&block(2, vec![tx(12, vec![], vec![(a.clone(), 7)])])).unwrap();
+        e.process_block(&block(2, vec![tx(12, vec![], vec![(a.clone(), 7)])]))
+            .unwrap();
         assert_eq!(e.cat_zat[Cat::P2pkhExposed as usize], 57);
         assert_eq!(e.sent_to_exposed, 7);
         assert_eq!(e.total_zat(), 157);
@@ -421,16 +450,19 @@ mod tests {
 
     #[test]
     fn p2pk_output_exposes_matching_t1() {
-        let g = hex::decode("0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798").unwrap();
+        let g = hex::decode("0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798")
+            .unwrap();
         let ghash = script::hash160(&g);
         let t1 = script_for(Kind::P2pkh, &ghash);
         let mut p2pk = vec![33u8];
         p2pk.extend_from_slice(&g);
         p2pk.push(0xac);
         let mut e = Engine::new(0);
-        e.process_block(&block(0, vec![tx(1, vec![], vec![(t1, 40)])])).unwrap();
+        e.process_block(&block(0, vec![tx(1, vec![], vec![(t1, 40)])]))
+            .unwrap();
         assert_eq!(e.cat_zat[Cat::P2pkhHidden as usize], 40);
-        e.process_block(&block(1, vec![tx(2, vec![], vec![(p2pk, 5)])])).unwrap();
+        e.process_block(&block(1, vec![tx(2, vec![], vec![(p2pk, 5)])]))
+            .unwrap();
         assert_eq!(e.cat_zat[Cat::P2pkhHidden as usize], 0);
         assert_eq!(e.cat_zat[Cat::P2pkhExposed as usize], 40);
         assert_eq!(e.cat_zat[Cat::P2pk as usize], 5);
