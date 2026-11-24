@@ -29,6 +29,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Dashboard unit tests (Base58Check, TEX, shard index)
+        run: node --test web/test/
       - name: Dataset invariants
         run: python3 scripts/verify_dataset.py
       - name: Generated docs are up to date
