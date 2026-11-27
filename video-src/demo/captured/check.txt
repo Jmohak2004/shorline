@@ -1,0 +1,15 @@
+t1gsBrGZGMyDGZw2icGnMpVBuEGVWip5kH8
+  type:     P2PKH (t1)
+  balance:  565988.73845300 ZEC in 23 UTXOs
+  status:   EXPOSED: public key revealed at height 3140430 by tx cdd6f0b2b75377328b41a318a6fa994f78d115985b29e172f1ee5c901e44cbe6
+  risk:     a discrete-log-breaking (quantum) adversary can derive the key and forge spends of these funds.
+  action:   move funds to a fresh Ironwood shielded address (ZIP 2005 recoverable) and never reuse this address.
+t1b5JTd4QL3VjUyXDTqDu6mST3XkcrsvLTd
+  type:     P2PKH (t1)
+  balance:  69442.79860000 ZEC in 2 UTXOs
+  history:  2 blocks with activity, no spend from this address
+  status:   HASH-PROTECTED: public key never revealed on-chain.
+  risk:     safe from Shor's algorithm until spent; spending reveals the key. Recoverable after Q-day only if
+            ZIP 2007's transparent recovery circuit is deployed.
+  action:   migrate to Ironwood in one sweep; do not leave change at this address.
+timeout 150 target/release/shorline check --server $sv    0.06s user 0.04s system 0% cpu 21.691 total

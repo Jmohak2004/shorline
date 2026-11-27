@@ -1,0 +1,84 @@
+{
+  "voice": "af_heart",
+  "speed": 1.0,
+  "lines": [
+    {
+      "id": "d01",
+      "step": "STEP 1 \u00b7 THE APP",
+      "cap": "Now let's see it working. This is the real, live dashboard.",
+      "tts": "Now let's see it working. This is the real, live dashboard."
+    },
+    {
+      "id": "d02",
+      "step": "STEP 1 \u00b7 THE APP",
+      "cap": "It answers one question: how much ZEC is exposed, and how much is safe?",
+      "tts": "It answers one question. How much zeck is exposed, and how much is safe?"
+    },
+    {
+      "id": "d03",
+      "step": "STEP 2 \u00b7 CHECK AN ADDRESS",
+      "cap": "Say you hold Zcash at this address. Paste it into the checker and press Check.",
+      "tts": "Say you hold Zee cash at this address. Paste it into the checker, and press Check."
+    },
+    {
+      "id": "d04",
+      "step": "STEP 2 \u00b7 CHECK AN ADDRESS",
+      "cap": "Exposed. Its public key has been on the blockchain since block 3,140,430.",
+      "tts": "Exposed. Its public key has been on the blockchain since block three million, one hundred forty thousand."
+    },
+    {
+      "id": "d05",
+      "step": "STEP 2 \u00b7 CHECK AN ADDRESS",
+      "cap": "And it tells you what to do: move the funds to a fresh Ironwood address.",
+      "tts": "And it tells you what to do. Move the funds to a fresh Ironwood address."
+    },
+    {
+      "id": "d06",
+      "step": "STEP 3 \u00b7 A SAFER ADDRESS",
+      "cap": "Now an address that has never been spent from.",
+      "tts": "Now, an address that has never been spent from."
+    },
+    {
+      "id": "d07",
+      "step": "STEP 3 \u00b7 A SAFER ADDRESS",
+      "cap": "Hash-protected: safe for now, but spending reveals the key, so sweep it all at once.",
+      "tts": "Hash protected. Safe for now, but spending reveals the key, so sweep it all at once."
+    },
+    {
+      "id": "d08",
+      "step": "STEP 3 \u00b7 A SAFER ADDRESS",
+      "cap": "The lookup runs in your browser. The site never learns which address you checked.",
+      "tts": "The lookup runs in your browser. The site never learns which address you checked."
+    },
+    {
+      "id": "d09",
+      "step": "STEP 4 \u00b7 THE COMMAND LINE",
+      "cap": "Prefer a terminal? One command checks any address live against the chain.",
+      "tts": "Prefer a terminal? One command checks any address, live, against the chain."
+    },
+    {
+      "id": "d10",
+      "step": "STEP 4 \u00b7 THE COMMAND LINE",
+      "cap": "Same answers, live from public lightwalletd servers. Balances can be newer than the dashboard snapshot.",
+      "tts": "Same answers, live from public lightwalletd servers. Balances can be newer than the dashboard snapshot."
+    },
+    {
+      "id": "d11",
+      "step": "STEP 5 \u00b7 REPRODUCE IT",
+      "cap": "And you can rebuild the survey yourself. This scan replays the first 20,000 blocks.",
+      "tts": "And you can rebuild the survey yourself. This scan replays the first twenty thousand blocks."
+    },
+    {
+      "id": "d12",
+      "step": "STEP 5 \u00b7 REPRODUCE IT",
+      "cap": "Every transparent input is matched to its output: missing equals zero.",
+      "tts": "Every transparent input is matched to its output. Missing equals zero."
+    },
+    {
+      "id": "d13",
+      "step": "STEP 5 \u00b7 REPRODUCE IT",
+      "cap": "A Rust engine, public servers, one command. That is how Shorline is built, and how you use it.",
+      "tts": "A Rust engine, public servers, one command. That is how Shorline is built, and how you use it."
+    }
+  ]
+}

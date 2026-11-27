@@ -1,0 +1,11 @@
+connected https://zec.rocks:443: ECC LightWalletD v0.6.3 height=3617219
+connected https://na.zec.rocks:443: ECC LightWalletD v0.6.3 height=3617219
+connected https://eu.zec.rocks:443: ECC LightWalletD v0.6.3 height=3617219
+connected https://ap.zec.rocks:443: ECC LightWalletD v0.6.3 height=3617219
+scanning blocks 0..=20000 in chunks of 2000 with 4 parallel downloads
+  ! chunk 6000-7999 attempt 1 on server #3 failed: status: Internal, message: "unexpected EOF", details: [], metadata: MetadataMap { headers: {} }
+h=    5999 ( 30.0%)    128 blk/s | utxos=461350 entities=66657 | exposed=5.4k hidden=3.3k p2sh?=2.2k total=10.9k ZEC | missing=0
+h=   13999 ( 70.0%)    150 blk/s | utxos=598886 entities=92338 | exposed=43.4k hidden=5.1k p2sh?=12.2k total=60.8k ZEC | missing=0
+h=   20000 (100.0%)    213 blk/s | utxos=1718938 entities=108052 | exposed=86.8k hidden=12.4k p2sh?=25.0k total=124.2k ZEC | missing=0
+wrote dataset to /private/tmp/claude-501/-Users-mohakjaiswal-shorline/1fcc3328-03c7-4181-aa80-b8670ae0dd8d/scratchpad/demoscan in 94s
+target/release/shorline scan --end 20000 --no-pools --no-p2sh-survey  --out   2.60s user 0.68s system 3% cpu 1:33.76 total
