@@ -16,4 +16,4 @@
 * `scripts/verify_dataset.py` (32 invariants) and `scripts/check_links.py`.
 * CI: rustfmt, clippy `-D warnings`, tests, live smoke scan, dataset invariants, generated-docs freshness, Node unit tests.
 * Address logic extracted to `web/addr.js` with tests pinned to Rust's shard index.
-* Explainer video (4:35), `docs/SUBMISSION.md`, CONTRIBUTING, SECURITY, FAQ.
+* Explainer video (5:41) with a 66-second live demo of the dashboard checker, `shorline check` and `shorline scan` (sources in `video-src/demo/`), `docs/SUBMISSION.md`, CONTRIBUTING, SECURITY, FAQ.

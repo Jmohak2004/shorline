@@ -4,7 +4,7 @@
 **Categories:** Infrastructure, Education and Adoption
 **Repo (MIT):** https://github.com/Jmohak2004/shorline
 **Live dashboard:** https://jmohak2004.github.io/shorline/
-**Explainer video (4:35):** [docs/video/shorline-explainer.mp4](video/shorline-explainer.mp4)
+**Explainer video (5:41, includes a live demo of the app):** [docs/video/shorline-explainer.mp4](video/shorline-explainer.mp4)
 
 ## One paragraph
 
@@ -49,7 +49,7 @@ first appeared on-chain, and assigns every one of 17.05M ZEC to a fate. It match
 | Bounty theme | Delivered |
 |---|---|
 | Infrastructure | A reproducible Rust survey engine, a published JSON dataset with a documented schema, CI with smoke tests against live lightwalletd, a Pages-deployed dashboard |
-| Education | A 4:35 explainer video defining every term, a dashboard that explains each result, a methodology document and a ZIP 2007 circuit-sizing note |
+| Education | A 5:41 explainer video defining every term, with a live demo of the dashboard and CLI, a dashboard that explains each result, a methodology document and a ZIP 2007 circuit-sizing note |
 | Adoption | A privacy-preserving address checker, NFC tap-to-check, and per-audience guidance (holders, treasuries, exchanges) |
 
 ## Honest limits

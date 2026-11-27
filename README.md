@@ -21,7 +21,7 @@ A verifiable, chain-wide quantum-exposure survey of Zcash. It sorts every zatosh
 
 [![Shorline explainer video: problem, concepts, solution, results](docs/video/poster.jpg)](docs/video/shorline-explainer.mp4)
 
-*Click to play (4:35, 1080p, Kokoro TTS narration).* It explains the quantum threat with real-life analogies, defines every term (public/private key, hash, Shor's algorithm, UTXO, zatoshi, shielded pools, ZIP 2005/2007, k-anonymity), shows how Shorline works, and walks through the results. Built with the [`/brag`](https://github.com/latent-spaces/brag) skill and [HyperFrames](https://github.com/heygen-com/hyperframes) in a neobrutalist style; sources in [`video-src/`](video-src). Music: Sascha Ende, ende.app (CC BY 4.0).
+*Click to play (5:41, 1080p, Kokoro TTS narration).* It explains the quantum threat with real-life analogies, defines every term (public/private key, hash, Shor's algorithm, UTXO, zatoshi, shielded pools, ZIP 2005/2007, k-anonymity), shows how Shorline works, walks through the results, and ends with a **real live demo**: checking addresses on the deployed dashboard, running `shorline check`, and replaying blocks with `shorline scan`. Built with the [`/brag`](https://github.com/latent-spaces/brag) skill and [HyperFrames](https://github.com/heygen-com/hyperframes) in a neobrutalist style; sources in [`video-src/`](video-src). Music: Sascha Ende, ende.app (CC BY 4.0).
 
 <!-- FINDINGS:START -->
 ### Headline findings: block 3,583,892 (17 Nov 2026)
